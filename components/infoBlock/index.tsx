@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import { message} from 'antd';
+import {DatePicker, message} from 'antd';
 import { Button, Col, Drawer, Form, Input, Row, Select, Space } from 'antd';
 import {useRouter} from "next/router";
 import InfoBlockTable from "~/components/infoBlock/table";
@@ -128,9 +128,35 @@ export default function InfoBlock({
                                     <Form.Item
                                         name={item.name}
                                         label={item.name}
-                                        rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
+                                        rules={[{required: item.required, message: `Please enter ${item.name}`}]}
                                     >
                                         <Input/>
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                        } else if (item.type === 'textarea') {
+                            return <Row gutter={16}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name={item.name}
+                                        label={item.name}
+                                        rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
+                                    >
+                                        <Input.TextArea
+                                            rows={4}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </Row>
+                        } else if (item.type === 'date') {
+                            return <Row gutter={16}>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name={item.name}
+                                        label={item.name}
+                                        rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
+                                    >
+                                        <DatePicker picker={item.picker} />
                                     </Form.Item>
                                 </Col>
                             </Row>
