@@ -3,19 +3,11 @@ import React, {useEffect, useMemo, useState} from 'react';
 import Pages from "~/components/pages";
 
 
-export default function Infobloks({id}: any) {
+export default function Infobloks() {
 
     return (
         <MainLayout>
-            <Pages id={id}/>
+            <Pages/>
         </MainLayout>
     )
 }
-
-export const getServerSideProps = ({query}: any)  => {
-    return {
-        props: {
-            id: Number(query.id)
-        }
-    }
-};
