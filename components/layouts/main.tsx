@@ -5,6 +5,7 @@ import {
 } from '@ant-design/icons';
 import {Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
 import {useRouter} from "next/router";
+
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
     return {
@@ -17,13 +18,13 @@ function getItem(label, key, icon, children) {
 const items = [
     getItem('InfoBlocks', 'infobloks', <PieChartOutlined />, [
         getItem('Pages', 'pages'),
-        getItem('Contents', 'content'),
-        getItem('Work', 'work'),
-        getItem('Educatuon', 'education'),
+        getItem('Contents', 'contents'),
+        getItem('Work', 'works'),
+        getItem('Educatuon', 'educations'),
         getItem('Skills', 'skills'),
     ]),
 ];
-export default function MainLayout({children, isShowAdd, showDrawer}: any) {
+export default function MainLayout({children, isShowAdd = true}: any) {
     const router = useRouter();
     const [collapsed, setCollapsed] = useState(false);
     const {
@@ -41,7 +42,7 @@ export default function MainLayout({children, isShowAdd, showDrawer}: any) {
                 link += `${pageCode}/`;
                 return {
                     title: `${pageCode[0].toUpperCase()}${pageCode.slice(1)}`,
-                    link: `/${link}`
+                    link: `${link}`
                 }
             })
         ]
@@ -55,6 +56,25 @@ export default function MainLayout({children, isShowAdd, showDrawer}: any) {
         })
     }, [router])
 
+    const routerRoot = useMemo(() => {
+        return router.pathname.replace('/[...id]', '');
+    }, [])
+
+    const showDrawer = () => {
+        //publish('addNewItem');
+        router.replace("", `${routerRoot}/0` )
+    }
+
+    const selectedKey = useMemo(() => {
+        const path = router.pathname.split('/');
+        return path[2]
+    }, [router])
+
+    const openKey = useMemo(() => {
+        const path = router.pathname.split('/');
+        return path[1]
+    }, [router])
+
     return (
         <Layout
             style={{
@@ -65,8 +85,8 @@ export default function MainLayout({children, isShowAdd, showDrawer}: any) {
                 <div className="demo-logo-vertical" />
                 <Menu
                     theme="dark"
-                    defaultSelectedKeys={['pages']}
-                    defaultOpenKeys={['infobloks']}
+                    defaultSelectedKeys={[selectedKey]}
+                    defaultOpenKeys={[openKey]}
                     mode="inline"
                     items={items}
                     onClick={({ item, key, keyPath, domEvent }) => {
@@ -88,7 +108,9 @@ export default function MainLayout({children, isShowAdd, showDrawer}: any) {
                             items={breadcrumbItems}
                         >
                         </Breadcrumb>
-                        <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>Add item</Button>
+                        {isShowAdd && (
+                            <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>Add item</Button>
+                        )}
                     </Flex>
                     <div
                         style={{
