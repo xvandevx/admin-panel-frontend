@@ -17,7 +17,7 @@ interface DataType {
 
 export default function InfoBlockTable({
     tableItems,
-    renderTableItems,
+    renderTableItems = {},
     deleteTableItem,
     getItems,
     data,
@@ -27,6 +27,7 @@ export default function InfoBlockTable({
         return router.pathname.replace('/[...id]', '');
     }, [])
     const columns = useMemo(() => {
+        console.log('renderTableItems', renderTableItems, tableItems)
         return [
             {
                 title: 'Id',
@@ -37,12 +38,15 @@ export default function InfoBlockTable({
                 rowScope: 'row',
             },
             ...tableItems.map((item: any) => {
-                return {
+                const items = {
                     title: item[0].toUpperCase() + item.substring(1),
                     dataIndex: item,
                     key: item,
-                    ...(renderTableItems[item] && {render: renderTableItems[item]})
-                };
+                }
+                if (renderTableItems[item]) {
+                    items.render = renderTableItems[item];
+                }
+                return items;
             }),
             {
                 title: 'Action',
