@@ -1,7 +1,8 @@
 import React, {useMemo, useState} from 'react';
 
 import {
-    PieChartOutlined, PlusOutlined,
+    DatabaseOutlined,
+    PieChartOutlined, PlusOutlined, UserOutlined,
 } from '@ant-design/icons';
 import {Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
 import {useRouter} from "next/router";
@@ -16,12 +17,16 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem('InfoBlocks', 'infobloks', <PieChartOutlined />, [
+    getItem('InfoBlocks', 'infobloks', <DatabaseOutlined />, [
         getItem('Pages', 'pages'),
         getItem('Contents', 'contents'),
         getItem('Work', 'works'),
         getItem('Educatuon', 'educations'),
         getItem('Skills', 'skills'),
+    ]),
+    getItem('Users', 'users', <UserOutlined />, [
+        getItem('Users', 'users'),
+        getItem('Roles', 'roles'),
     ]),
 ];
 export default function MainLayout({children, isShowAdd = true}: any) {
