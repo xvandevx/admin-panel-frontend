@@ -54,7 +54,7 @@ export default function InfoBlock({id, tableItems, renderTableItems}: any) {
             setIsOpen(false);
             getItems();
 
-        } catch (e) {
+        } catch (e: any) {
             message.error(`Error item save: ${e.message}`);
         }
     };

@@ -28,7 +28,7 @@ export default function Home() {
             } else {
                 message.error('Auth failed!');
             }
-        } catch (e) {
+        } catch (e: any) {
             if (e.message.includes("401")) {
                 message.error('Wrong user name or password');
             } else {
@@ -48,7 +48,7 @@ export default function Home() {
                 password: formData.password
             });
             setResertPasswordEmail('');
-        } catch (e) {
+        } catch (e: any) {
             if (e.message.includes("401")) {
                 message.error('Error');
             } else {
@@ -89,7 +89,7 @@ export default function Home() {
                             },
                         ]}
                     >
-                        <Input size="large" prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                        <Input size="large" prefix={<UserOutlined className="site-form-item-icon" rev={undefined} />} placeholder="Username" />
                     </Form.Item>
                     <Form.Item
                         name="password"
@@ -101,7 +101,7 @@ export default function Home() {
                         ]}
                     >
                         <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            prefix={<LockOutlined className="site-form-item-icon" rev={undefined} />}
                             type="password"
                             placeholder="Password"
                             size="large"
@@ -141,7 +141,7 @@ export default function Home() {
                         ]}
                     >
                         <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            prefix={<LockOutlined className="site-form-item-icon" rev={undefined} />}
                             type="password"
                             placeholder="Password"
                             size="large"
@@ -156,7 +156,7 @@ export default function Home() {
                         ]}
                     >
                         <Input
-                            prefix={<LockOutlined className="site-form-item-icon" />}
+                            prefix={<LockOutlined className="site-form-item-icon" rev={undefined} />}
                             type="password"
                             placeholder="Repeat password"
                             size="large"

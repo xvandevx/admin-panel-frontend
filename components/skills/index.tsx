@@ -1,13 +1,7 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {Table, Tag, message, Popconfirm, Radio, Upload} from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import {DeleteOutlined, EditOutlined, LoadingOutlined, PlusOutlined} from '@ant-design/icons';
-import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from 'antd';
+import React, {useState} from 'react';
+import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import {Api} from "~/api";
-import {useRouter} from "next/router";
-import { subscribe, unsubscribe } from "~/utils/events";
 import InfoBlock from "~/components/infoBlock";
-import dayjs from "dayjs";
 const _ = require('lodash');
 interface DataType {
     key: string;
@@ -60,7 +54,7 @@ export default function Skills() {
 
     const uploadButton = (
         <div>
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            {loading ? <LoadingOutlined rev={undefined} /> : <PlusOutlined rev={undefined} />}
             <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     );
@@ -72,7 +66,7 @@ export default function Skills() {
             deleteTableItem={Api.skills.delete}
             updateItem={Api.skills.update}
             addItem={Api.skills.add}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 return data
             }}

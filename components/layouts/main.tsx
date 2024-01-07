@@ -8,7 +8,7 @@ import {Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
 import {useRouter} from "next/router";
 
 const { Header, Content, Footer, Sider } = Layout;
-function getItem(label, key, icon, children) {
+function getItem(label: string, key: string, icon?: any, children?: any[]) {
     return {
         key,
         icon,
@@ -17,14 +17,14 @@ function getItem(label, key, icon, children) {
     };
 }
 const items = [
-    getItem('InfoBlocks', 'infobloks', <DatabaseOutlined />, [
+    getItem('InfoBlocks', 'infobloks', <DatabaseOutlined rev={undefined} />, [
         getItem('Pages', 'pages'),
         getItem('Contents', 'contents'),
         getItem('Work', 'works'),
         getItem('Educatuon', 'educations'),
         getItem('Skills', 'skills'),
     ]),
-    getItem('Users', 'users', <UserOutlined />, [
+    getItem('Users', 'users', <UserOutlined rev={undefined} />, [
         getItem('Users', 'users'),
         getItem('Roles', 'roles'),
     ]),
@@ -114,7 +114,7 @@ export default function MainLayout({children, isShowAdd = true}: any) {
                         >
                         </Breadcrumb>
                         {isShowAdd && (
-                            <Button type="primary" onClick={showDrawer} icon={<PlusOutlined />}>Add item</Button>
+                            <Button type="primary" onClick={showDrawer} icon={<PlusOutlined rev={undefined} />}>Add item</Button>
                         )}
                     </Flex>
                     <div

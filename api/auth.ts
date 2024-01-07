@@ -9,7 +9,7 @@ export default (axios: any, config: any) => ({
             const data = await axios.post(`${config.API_URL}/auth/check`);
             console.log('data', data)
             return data;
-        } catch (e) {
+        } catch (e: any) {
             console.warn('error test', e);
         }
         return false

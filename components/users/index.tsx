@@ -20,7 +20,7 @@ export default function Users() {
     ];
 
     const renderTableItems = {
-        'roles': (_, { roles }: any) => (
+        'roles': (_: any, { roles }: any) => (
             <>
                 {roles.map((role: any) => {
                     return (
@@ -78,7 +78,7 @@ export default function Users() {
 
     const uploadButton = (
         <div>
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            {loading ? <LoadingOutlined rev={undefined} /> : <PlusOutlined rev={undefined} />}
             <div style={{ marginTop: 8 }}>Upload</div>
         </div>
     );
@@ -91,7 +91,7 @@ export default function Users() {
             updateItem={Api.users.update}
             addItem={Api.users.add}
             renderTableItems={renderTableItems}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 data.roles = data.roles.map(({id}: any) => id);
                 return data

@@ -22,7 +22,7 @@ export default function Contents() {
     ];
 
     const renderTableItems = {
-        'pages': (_, { pages }: any) => (
+        'pages': (_: any, { pages }: any) => (
             <>
                 {pages.map((page: any) => {
                     return (
@@ -97,7 +97,7 @@ export default function Contents() {
             deleteTableItem={Api.contents.delete}
             updateItem={Api.contents.update}
             addItem={Api.contents.add}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 data.pages = data.pages.map(({id}: any) => id);
                 return data

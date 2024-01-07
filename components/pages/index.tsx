@@ -47,7 +47,7 @@ export default function Pages() {
             deleteTableItem={Api.pages.delete}
             updateItem={Api.pages.update}
             addItem={Api.pages.add}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 return data
             }}

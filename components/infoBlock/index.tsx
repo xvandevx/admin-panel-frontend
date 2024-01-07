@@ -55,7 +55,7 @@ export default function InfoBlock({
             }
             await getItems()
             onClose();
-        } catch (e) {
+        } catch (e: any) {
             message.error(`Error item save: ${e.message}`);
         }
     };

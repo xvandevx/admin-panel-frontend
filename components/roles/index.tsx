@@ -33,7 +33,7 @@ export default function Roles() {
             deleteTableItem={Api.roles.delete}
             updateItem={Api.roles.update}
             addItem={Api.roles.add}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 return data
             }}

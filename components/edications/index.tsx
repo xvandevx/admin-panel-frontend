@@ -69,7 +69,7 @@ export default function Edications() {
             deleteTableItem={Api.educations.delete}
             updateItem={Api.educations.update}
             addItem={Api.educations.add}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 data.endDate = data.endDate ? dayjs(data.endDate) : ''
                 data.startDate = data.startDate ? dayjs(data.startDate) : ''

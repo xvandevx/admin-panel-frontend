@@ -33,12 +33,12 @@ export default function InfoBlockTable({
                 title: 'Id',
                 dataIndex: 'id',
                 key: 'id',
-                sorter: (a, b) => a.id - b.id,
+                sorter: (a: any, b: any) => a.id - b.id,
                 width: '70px',
                 rowScope: 'row',
             },
             ...tableItems.map((item: any) => {
-                const items = {
+                const items: any = {
                     title: item[0].toUpperCase() + item.substring(1),
                     dataIndex: item,
                     key: item,
@@ -51,11 +51,11 @@ export default function InfoBlockTable({
             {
                 title: 'Action',
                 key: 'action',
-                render: (key, record: any) => (
+                render: (key: any, record: any) => (
                     <Space size="middle">
                         <Button
                             type="primary" ghost
-                            icon={ <EditOutlined/>}
+                            icon={ <EditOutlined rev={undefined}/>}
                             onClick={() => {
                                 router.replace("", `${routerRoot}/${record.id}` )
                             }}
@@ -72,7 +72,7 @@ export default function InfoBlockTable({
                         >
                             <Button
                                 danger
-                                icon={<DeleteOutlined />}
+                                icon={<DeleteOutlined rev={undefined} />}
                             />
                         </Popconfirm>
 

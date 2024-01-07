@@ -1,12 +1,12 @@
-function subscribe(eventName, listener) {
+function subscribe(eventName: string, listener: { (): void; (this: Document, ev: any): any; }) {
     document.addEventListener(eventName, listener);
 }
 
-function unsubscribe(eventName, listener) {
+function unsubscribe(eventName: string, listener: { (): void; (this: Document, ev: any): any; }) {
     document.removeEventListener(eventName, listener);
 }
 
-function publish(eventName, data) {
+function publish(eventName: string, data: any) {
     const event = new CustomEvent(eventName, { detail: data });
     document.dispatchEvent(event);
 }

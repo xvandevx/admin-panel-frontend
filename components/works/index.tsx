@@ -25,7 +25,7 @@ export default function Works() {
     ];
 
     const renderTableItems = {
-        'skills': (_, { skills }: any) => (
+        'skills': (_: any, { skills }: any) => (
             <>
                 {skills.map((skill: any) => {
                     return (
@@ -112,7 +112,7 @@ export default function Works() {
             deleteTableItem={Api.works.delete}
             updateItem={Api.works.update}
             addItem={Api.works.add}
-            prepareFormFields={(record) => {
+            prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
                 data.endDate = data.endDate ? dayjs(data.endDate) : ''
                 data.startDate = data.startDate ? dayjs(data.startDate) : ''
