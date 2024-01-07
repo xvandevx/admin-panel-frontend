@@ -121,64 +121,69 @@ export default function InfoBlock({
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                 >
-                    {editFormItems.map((item: any) => {
-                        if (item.type === 'string') {
-                            return <Row gutter={16}>
-                                <Col span={24}>
-                                    <Form.Item
-                                        name={item.name}
-                                        label={item.name}
-                                        rules={[{required: item.required, message: `Please enter ${item.name}`}]}
-                                    >
-                                        <Input/>
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        } else if (item.type === 'textarea') {
-                            return <Row gutter={16}>
-                                <Col span={24}>
-                                    <Form.Item
-                                        name={item.name}
-                                        label={item.name}
-                                        rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
-                                    >
-                                        <Input.TextArea
-                                            rows={4}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        } else if (item.type === 'date') {
-                            return <Row gutter={16}>
-                                <Col span={24}>
-                                    <Form.Item
-                                        name={item.name}
-                                        label={item.name}
-                                        rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
-                                    >
-                                        <DatePicker picker={item.picker} />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        } else if (item.type === 'select') {
-                            return <Row gutter={16}>
-                                <Col span={24}>
-                                    <Form.Item
-                                        name={item.name}
-                                        label={item.name}
-                                        rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
-                                    >
-                                        <Select
-                                            mode={item.mode}
-                                            allowClear
-                                            style={{ width: '100%' }}
-                                            options={item.options}
-                                        />
-                                    </Form.Item>
-                                </Col>
-                            </Row>
-                        }
-                    })}
+                    {editFormItems.map((item: any) => (
+                        <div key={item.name}>
+                            {(item.type === 'string') && (
+                                <Row gutter={16}>
+                                    <Col span={24}>
+                                        <Form.Item
+                                            name={item.name}
+                                            label={item.name}
+                                            rules={[{required: item.required, message: `Please enter ${item.name}`}]}
+                                        >
+                                            <Input/>
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            )}
+                            {(item.type === 'textarea') && (
+                                <Row gutter={16}>
+                                    <Col span={24}>
+                                        <Form.Item
+                                            name={item.name}
+                                            label={item.name}
+                                            rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
+                                        >
+                                            <Input.TextArea
+                                                rows={4}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            )}
+                            {(item.type === 'date') && (
+                                <Row gutter={16}>
+                                    <Col span={24}>
+                                        <Form.Item
+                                            name={item.name}
+                                            label={item.name}
+                                            rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
+                                        >
+                                            <DatePicker picker={item.picker} />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            )}
+                            {(item.type === 'select') && (
+                                <Row gutter={16}>
+                                    <Col span={24}>
+                                        <Form.Item
+                                            name={item.name}
+                                            label={item.name}
+                                            rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
+                                        >
+                                            <Select
+                                                mode={item.mode}
+                                                allowClear
+                                                style={{ width: '100%' }}
+                                                options={item.options}
+                                            />
+                                        </Form.Item>
+                                    </Col>
+                                </Row>
+                            )}
+                        </div>
+                    ))}
                     {customFormItem}
                     <Row gutter={16}>
                         <Col span={24}>
