@@ -1,0 +1,40 @@
+services:
+    - docker:19.03.12-dind
+
+stages:
+    - build
+    - deploy
+
+variables:
+    CONTAINER_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+
+build:
+    image: docker:stable
+    stage: build
+    script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+        - docker build -t $CONTAINER_IMAGE .
+        - docker push $CONTAINER_IMAGE
+    only:
+        - master
+
+deploy:
+    image: kroniak/ssh-client
+    stage: deploy
+    script:
+        - echo $CI_DEPLOY_USER
+        - echo $CI_DEPLOY_PASSWORD
+        - mkdir -p ~/.ssh
+        - chmod 700 ~/.ssh
+        - echo "$MASTER_SSH_KEY" > ~/.ssh/id_rsa
+        - chmod 600 ~/.ssh/id_rsa
+        #- cat ~/.ssh/id_rsa
+        - ssh-keyscan $MASTER_HOST >> ~/.ssh/known_hosts
+        - echo $CI_COMMIT_REF_NAME
+        #- cat ~/.ssh/known_hosts
+        - ssh $MASTER_SSH_USER@$MASTER_HOST "docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY"
+        - ssh $MASTER_SSH_USER@$MASTER_HOST "docker rmi -f $CONTAINER_IMAGE"
+        - ssh $MASTER_SSH_USER@$MASTER_HOST "docker pull $CONTAINER_IMAGE"
+        - ssh $MASTER_SSH_USER@$MASTER_HOST "cd /var/www/www-root/data/www && docker-compose restart nest"
+    only:
+        - master
