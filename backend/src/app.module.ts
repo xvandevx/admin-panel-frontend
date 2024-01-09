@@ -49,6 +49,11 @@ import {AuthGuard} from "./auth/auth.guard";
             autoLoadModels: true,
             logging: false,
             synchronize: true,
+            dialectOptions: {
+                ssl: {
+                    require: true
+                }
+            }
         }),
         WorksModule,
         SkillsModule,
@@ -61,10 +66,10 @@ import {AuthGuard} from "./auth/auth.guard";
     ],
     controllers: [],
     providers: [
-        {
+        /*{
             provide: APP_GUARD,
             useClass: AuthGuard,
-        },
+        },*/
     ],
 })
 export class AppModule {
