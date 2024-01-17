@@ -16,11 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Docker
-        uses: actions/setup-docker@v2
-        with:
-          dockerfile: frontend/Dockerfile
-
       - name: Build and push frontend Docker image to ECR
         env:
           AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
@@ -39,11 +34,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up Docker
-        uses: actions/setup-docker@v2
-        with:
-          dockerfile: backend/Dockerfile
 
       - name: Build and push backend Docker image to ECR
         env:
