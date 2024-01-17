@@ -10,7 +10,7 @@ jobs:
   build-and-push-frontend:
     runs-on: ubuntu-latest
 
-    if: contains(github.event_name, 'push') && startsWith(github.event.head_commit.message, 'frontend')
+    #if: contains(github.event_name, 'push') && startsWith(github.event.head_commit.message, 'frontend')
 
     steps:
       - name: Checkout
@@ -37,11 +37,11 @@ jobs:
           # push it to ECR so that it can
           # be deployed to ECS.
           echo "test"
-          echo $ECR_REGISTRY
-          echo $ECR_REPOSITORY
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG frontend
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "$ECR_REGISTRY"
+          echo "$ECR_REPOSITORY"
+          #docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG frontend
+          #docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          #echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   build-and-push-backend:
     runs-on: ubuntu-latest
