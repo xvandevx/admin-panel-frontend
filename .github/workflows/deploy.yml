@@ -2,9 +2,7 @@ name: Simple admin panel
 
 on:
   push:
-    paths:
-      - 'frontend/**'
-      - 'backend/**'
+    branches: [ "main" ]
 
 jobs:
   build-and-push-frontend:
