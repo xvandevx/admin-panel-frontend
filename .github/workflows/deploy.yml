@@ -13,18 +13,35 @@ jobs:
     if: contains(github.event_name, 'push') && startsWith(github.event.head_commit.message, 'frontend')
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Build and push frontend Docker image to ECR
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
         env:
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          ECR_REPO_NAME: admin-panel
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$GITHUB_SHA frontend
-          docker login -u AWS -p "$(aws ecr get-login-password --region $AWS_REGION)" $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$GITHUB_SHA
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          echo "test"
+          echo $ECR_REGISTRY
+          echo $ECR_REPOSITORY
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG frontend
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   build-and-push-backend:
     runs-on: ubuntu-latest
