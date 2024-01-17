@@ -1,0 +1,52 @@
+name: Simple admin panel
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - 'backend/**'
+
+jobs:
+  build-and-push-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+        with:
+          dockerfile: frontend/Dockerfile
+
+      - name: Build and push frontend Docker image to ECR
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          ECR_REPO_NAME: admin-panel
+        run: |
+          docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$GITHUB_SHA frontend
+          docker login -u AWS -p "$(aws ecr get-login-password --region $AWS_REGION)" $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$GITHUB_SHA
+
+  build-and-push-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        uses: actions/setup-docker@v2
+        with:
+          dockerfile: backend/Dockerfile
+
+      - name: Build and push backend Docker image to ECR
+        env:
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          ECR_REPO_NAME: admin-panel-backend
+        run: |
+          docker build -t $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$GITHUB_SHA backend
+          docker login -u AWS -p "$(aws ecr get-login-password --region $AWS_REGION)" $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+          docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$GITHUB_SHA
