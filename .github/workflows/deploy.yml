@@ -49,7 +49,8 @@ jobs:
           script: |
             cd adminPanel/
             docker-compose pull
-            docker-compose restart
+            docker-compose down
+            docker-compose up -d
 
 #  build-and-push-backend:
 #    runs-on: ubuntu-latest
