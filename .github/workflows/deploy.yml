@@ -47,7 +47,7 @@ jobs:
           password: ${{ secrets.REMOTE_SERVER_SSH_KEY }}
           port: ${{ secrets.REMOTE_SERVER_SSH_PORT }}
           script: |
-            cd /adminPanel
+            cd adminPanel/
             docker-compose pull
             docker-compose restart
 
