@@ -68,6 +68,7 @@ export default function Home() {
 
     return (
         <AuthLayout>
+            test
             {!resetPasswordEmail && (
                 <Form
                     name="normal_login"
