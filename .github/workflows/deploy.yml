@@ -39,6 +39,18 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
+      - name: SSH into the remote server and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_SERVER_HOST }}
+          username: ${{ secrets.REMOTE_SERVER_USERNAME }}
+          key: ${{ secrets.REMOTE_SERVER_SSH_KEY }}
+          port: ${{ secrets.REMOTE_SERVER_SSH_PORT }}
+          script: |
+            cd /adminPanel
+            docker-compose pull
+            docker-compose restart
+
   build-and-push-backend:
     runs-on: ubuntu-latest
 
