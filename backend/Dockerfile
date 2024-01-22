@@ -3,7 +3,7 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN  npm install --production
+RUN  npm install
 
 FROM node:18-alpine AS builder
 WORKDIR /app
@@ -29,8 +29,8 @@ COPY --from=builder /app/package.json ./package.json
 
 USER nextjs
 
-EXPOSE 3001
+EXPOSE 3010
 
-ENV PORT 3001
+ENV PORT 3010
 
 CMD ["node", "dist/main"]
