@@ -15,14 +15,15 @@ export class AuthService {
     async login(loginDto: LoginDto) {
         const user = await this.usersService.getUserByEmail(loginDto.email);
 
-        if (!user || !await bcrypt.compare(loginDto.password, user.password)) {
-            throw new UnauthorizedException();
-        }
-        if (!user.password) {
+        if (!user.dataValues.password) {
             return {
                 id: user.id,
                 status: "setPassword",
             };
+        }
+
+        if (!user || !await bcrypt.compare(loginDto.password, user.dataValues.password)) {
+            throw new UnauthorizedException();
         }
 
         return {
