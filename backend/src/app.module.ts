@@ -68,4 +68,7 @@ import {AuthGuard} from "./auth/auth.guard";
     ],
 })
 export class AppModule {
+    constructor() {
+        console.log('envs', process.env)
+    }
 }
