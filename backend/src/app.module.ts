@@ -49,11 +49,6 @@ import {AuthGuard} from "./auth/auth.guard";
             autoLoadModels: true,
             logging: false,
             synchronize: true,
-            dialectOptions: {
-                ssl: {
-                    require: true
-                }
-            }
         }),
         WorksModule,
         SkillsModule,

@@ -8,7 +8,7 @@ import roles from "~/api/roles";
 import users from "~/api/users";
 import auth from "~/api/auth";
 
-let API_URL = 'http://localhost:3001';
+let API_URL = '/api';
 
 const config = {
     API_URL,
