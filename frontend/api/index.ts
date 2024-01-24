@@ -7,12 +7,15 @@ import educations from "~/api/educations";
 import roles from "~/api/roles";
 import users from "~/api/users";
 import auth from "~/api/auth";
+import Cookies from "js-cookie";
 
 let API_URL = '/api';
 
 const config = {
     API_URL,
 }
+
+axios.defaults.headers.common['Authorization'] = `Bearer ${Cookies.get('token')}`;
 
 export const Api = {
     pages: pages(axios, config),

@@ -2,6 +2,7 @@ import {Body, Controller, Delete, Get, Inject, Param, Post, Put} from '@nestjs/c
 import { ContentsService } from './contents.service';
 import { CreateContentDto } from "./dto/create-content.dto";
 import {UpdateContentDto} from "./dto/update-content.dto";
+import {Public} from "../common";
 
 @Controller('contents')
 export class ContentsController {
@@ -19,6 +20,7 @@ export class ContentsController {
     return this.contentsService.update(id, contentDto);
   }
 
+  @Public()
   @Get()
   getAll() {
     return this.contentsService.getAll()

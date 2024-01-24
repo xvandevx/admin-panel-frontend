@@ -1,6 +1,7 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put} from '@nestjs/common';
 import { EducationsService } from './educations.service';
 import { CreateEducationsDto } from "./dto/create-educations.dto";
+import {Public} from "../common";
 
 @Controller('educations')
 export class EducationsController {
@@ -18,6 +19,7 @@ export class EducationsController {
     return this.educationsService.update(id, workDto);
   }
 
+  @Public()
   @Get()
   getAll() {
     return this.educationsService.getAll()

@@ -4,6 +4,7 @@ import { CreateSkillsDto } from "./dto/create-skills.dto";
 import {CreateContentDto} from "../contents/dto/create-content.dto";
 import {UpdateContentDto} from "../contents/dto/update-content.dto";
 import {UpdateSkillsDto} from "./dto/update-skills.dto";
+import {Public} from "../common";
 
 @Controller('skills')
 export class SkillsController {
@@ -21,6 +22,7 @@ export class SkillsController {
     return this.skillsService.update(id, skillsDto);
   }
 
+  @Public()
   @Get()
   getAll() {
     return this.skillsService.getAll()

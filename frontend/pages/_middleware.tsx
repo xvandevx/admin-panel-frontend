@@ -7,9 +7,11 @@ export async function middleware(request: any) {
     const token = request.cookies.token;
     let isAuth = false;
 
+    const path = request.nextUrl.protocol + '//' + request.headers.get('host') + ":8080";
+
     if (token) {
         try {
-            const response = await fetch("http://localhost:3001/auth/check", {
+            const response = await fetch(path + "/api/auth/check", {
                 method: "POST",
                 headers: {
                     authorization: `Bearer ${token}`
@@ -19,13 +21,12 @@ export async function middleware(request: any) {
             if (auth.statusCode === 200) {
                 isAuth = true;
             }
-        } catch {
-
+        } catch(e) {
+            console.log('error fetch', e)
         }
     }
 
     if (!isAuth) {
-        const originalUrl = request.nextUrl.protocol + request.headers.get('host') + request.nextUrl.pathname
-        return NextResponse.redirect(new URL('/auth', originalUrl));
+        return NextResponse.redirect(new URL('/auth', path));
     }
 }

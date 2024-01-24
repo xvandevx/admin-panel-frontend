@@ -3,14 +3,17 @@ import {AuthService} from "./auth.service";
 import {LoginDto} from "./dto/login.dto";
 import {SetPasswordDto} from "./dto/set-password.dto";
 import {AuthGuard} from "./auth.guard";
+import {Public} from "../common";
 
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) {
     }
+
+    @Public()
     @Post('login')
     async login(@Body() loginDto: LoginDto) {
-        return  await this.authService.login(loginDto);;
+        return await this.authService.login(loginDto);
 
        /* if (token) {
             res.cookie('token', token, {});
@@ -24,8 +27,6 @@ export class AuthController {
         return res.send({ message: 'success' });
     }
 
-
-    @UseGuards(AuthGuard)
     @Post('check')
     async checkIsAuth() {
         return {

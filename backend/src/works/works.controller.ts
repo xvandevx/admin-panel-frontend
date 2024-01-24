@@ -3,6 +3,7 @@ import { WorksService } from './works.service';
 import { CreateWorksDto } from "./dto/create-works.dto";
 import {CreatePageDto} from "../pages/dto/create-page.dto";
 import {UpdatePageDto} from "../pages/dto/update-page.dto";
+import {Public} from "../common";
 
 @Controller('works')
 export class WorksController {
@@ -20,6 +21,7 @@ export class WorksController {
     return this.worksService.update(id, workDto);
   }
 
+  @Public()
   @Get()
   getAll() {
     return this.worksService.getAll()

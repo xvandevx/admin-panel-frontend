@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Put, Param, Post} from '@nestjs/common';
 import { PagesService } from './pages.service';
 import { CreatePageDto } from "./dto/create-page.dto";
 import {UpdatePageDto} from "./dto/update-page.dto";
+import {Public} from "../common";
 
 @Controller('pages')
 export class PagesController {
@@ -19,6 +20,7 @@ export class PagesController {
     return this.pagesService.update(id, pageDto);
   }
 
+  @Public()
   @Get()
   getAll() {
     return this.pagesService.getAll()

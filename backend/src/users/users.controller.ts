@@ -4,6 +4,7 @@ import { CreateUsersDto } from "./dto/create-users.dto";
 import {CreateContentDto} from "../contents/dto/create-content.dto";
 import {UpdateContentDto} from "../contents/dto/update-content.dto";
 import {UpdateUsersDto} from "./dto/update-users.dto";
+import {Public} from "../common";
 
 @Controller('users')
 export class UsersController {
@@ -21,6 +22,7 @@ export class UsersController {
     return this.usersService.update(id, usersDto);
   }
 
+  @Public()
   @Get()
   getAll() {
     return this.usersService.getAll()

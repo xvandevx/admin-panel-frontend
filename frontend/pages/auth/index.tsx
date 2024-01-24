@@ -42,6 +42,7 @@ export default function Home() {
             const formData = setPasswordForm.getFieldsValue();
             if (formData.password !== formData.passwordRepeat) {
                 message.error('Passwords does not match');
+                return;
             }
             await Api.auth.setPassword({
                 email: resetPasswordEmail,
