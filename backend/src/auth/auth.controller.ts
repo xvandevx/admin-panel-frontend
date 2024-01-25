@@ -35,6 +35,7 @@ export class AuthController {
         };
     }
 
+    @Public()
     @Post('setPassword')
     setPassword(@Body() setPasswordDto: SetPasswordDto) {
         return this.authService.setPassword(setPasswordDto);
