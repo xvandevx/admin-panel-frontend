@@ -37,7 +37,7 @@ jobs:
           port: ${{ secrets.REMOTE_SERVER_SSH_PORT }}
           script: |
             cd adminPanel/
-            docker-compose pull
+            docker rmi -f xvandev/admin-panel:latest
             docker-compose down
             docker-compose up -d
 
@@ -73,6 +73,6 @@ jobs:
           port: ${{ secrets.REMOTE_SERVER_SSH_PORT }}
           script: |
             cd adminPanel/
-            docker-compose pull
+            docker rmi -f xvandev/admin-panel-backend:latest
             docker-compose down
             docker-compose up -d
