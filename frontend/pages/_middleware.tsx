@@ -1,4 +1,5 @@
 import {NextResponse} from 'next/server';
+import * as process from "process";
 
 export async function middleware(request: any) {
     if (request.page.name === '/auth') {
@@ -7,7 +8,8 @@ export async function middleware(request: any) {
     const token = request.cookies.token;
     let isAuth = false;
 
-    const path = request.nextUrl.protocol + '//' + request.headers.get('host') + ":8080";
+
+    const path = request.nextUrl.protocol + '//' + request.headers.get('host') + ":" + (process.env.PORT || 80);
 
     if (token) {
         try {
