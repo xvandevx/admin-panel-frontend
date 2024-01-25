@@ -1,17 +1,7 @@
-import React, {useEffect, useMemo, useState} from 'react';
-import {Table, Tag, message, Popconfirm, Radio, Upload} from 'antd';
-import type { ColumnsType } from 'antd/es/table';
-import {DeleteOutlined, EditOutlined, LoadingOutlined, PlusOutlined} from '@ant-design/icons';
-import { Button, Col, DatePicker, Drawer, Form, Input, Row, Select, Space } from 'antd';
+import React from 'react';
 import {Api} from "~/api";
-import {useRouter} from "next/router";
-import { subscribe, unsubscribe } from "~/utils/events";
 import InfoBlock from "~/components/infoBlock";
-import dayjs from "dayjs";
 const _ = require('lodash');
-interface DataType {
-    name: string;
-}
 
 export default function Roles() {
     const tableItems: string[] = [

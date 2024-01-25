@@ -1,8 +1,7 @@
 import React, {useMemo, useState} from 'react';
 
 import {
-    DatabaseOutlined,
-    PieChartOutlined, PlusOutlined, UserOutlined,
+    DatabaseOutlined, PlusOutlined, UserOutlined,
 } from '@ant-design/icons';
 import {Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
 import {useRouter} from "next/router";

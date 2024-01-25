@@ -3,7 +3,6 @@ import {DatePicker, message} from 'antd';
 import { Button, Col, Drawer, Form, Input, Row, Select, Space } from 'antd';
 import {useRouter} from "next/router";
 import InfoBlockTable from "~/components/infoBlock/table";
-const _ = require('lodash');
 interface DataType {
     key: string;
     name: string;
