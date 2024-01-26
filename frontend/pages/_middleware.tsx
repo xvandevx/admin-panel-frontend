@@ -2,7 +2,7 @@ import {NextResponse} from 'next/server';
 import * as process from "process";
 
 export async function middleware(request: any) {
-    if (request.page.name === '/auth') {
+    if (!request.page.name || request.page.name === '/auth') {
         return
     }
     const token = request.cookies.token;

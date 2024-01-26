@@ -1,13 +1,16 @@
 import React from 'react';
 
-import {Flex, Layout, Menu, theme} from 'antd';
+import {Flex, Layout, theme} from 'antd';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content } = Layout;
+import {useBack} from "~/hooks/useBack";
 
 export default function AuthLayout({children}: any) {
     const {
         token: { colorBgContainer, borderRadiusLG },
     } = theme.useToken();
+
+    const back = useBack();
 
     return (
         <Layout
@@ -21,9 +24,10 @@ export default function AuthLayout({children}: any) {
                 }} gap="middle" justify={'center'} align={'center'}>
                     <div
                         style={{
-                            background: colorBgContainer,
+                            background: '#ffffffe6',
                             padding: '25px 50px 25px',
                             borderRadius: borderRadiusLG,
+                            zIndex: 1,
                         }}
                     >
                         {children}

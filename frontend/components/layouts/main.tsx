@@ -131,7 +131,7 @@ export default function MainLayout({children, isShowAdd = true}: any) {
                         textAlign: 'center',
                     }}
                 >
-                    ©2023 Created by xvandev
+                    ©2024 Created by xvandev
                 </Footer>
             </Layout>
         </Layout>
