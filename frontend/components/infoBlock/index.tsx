@@ -3,12 +3,12 @@ import {DatePicker, message} from 'antd';
 import { Button, Col, Drawer, Form, Input, Row, Select, Space } from 'antd';
 import {useRouter} from "next/router";
 import InfoBlockTable from "~/components/infoBlock/table";
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
+
+export enum FormEditFieldTypes {
+    string,
+    textarea,
+    date,
+    select
 }
 
 export default function InfoBlock({
@@ -122,7 +122,7 @@ export default function InfoBlock({
                 >
                     {editFormItems.map((item: any) => (
                         <div key={item.name}>
-                            {(item.type === 'string') && (
+                            {(item.type === FormEditFieldTypes.string) && (
                                 <Row gutter={16}>
                                     <Col span={24}>
                                         <Form.Item
@@ -135,7 +135,7 @@ export default function InfoBlock({
                                     </Col>
                                 </Row>
                             )}
-                            {(item.type === 'textarea') && (
+                            {(item.type === FormEditFieldTypes.textarea) && (
                                 <Row gutter={16}>
                                     <Col span={24}>
                                         <Form.Item
@@ -150,7 +150,7 @@ export default function InfoBlock({
                                     </Col>
                                 </Row>
                             )}
-                            {(item.type === 'date') && (
+                            {(item.type === FormEditFieldTypes.date) && (
                                 <Row gutter={16}>
                                     <Col span={24}>
                                         <Form.Item
@@ -163,7 +163,7 @@ export default function InfoBlock({
                                     </Col>
                                 </Row>
                             )}
-                            {(item.type === 'select') && (
+                            {(item.type === FormEditFieldTypes.select) && (
                                 <Row gutter={16}>
                                     <Col span={24}>
                                         <Form.Item

@@ -24,7 +24,7 @@ export default function Home() {
                 Cookies.set('token', auth.token, {
                     path: '/',
                 });
-                router.replace('/');
+                window.location.href = '/';
             } else {
                 message.error('Auth failed!');
             }

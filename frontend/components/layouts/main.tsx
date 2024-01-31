@@ -1,10 +1,11 @@
 import React, {useMemo, useState} from 'react';
 
 import {
-    DatabaseOutlined, PlusOutlined, UserOutlined,
+    DatabaseOutlined, PlusOutlined, ReadOutlined, UserOutlined,
 } from '@ant-design/icons';
-import {Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
+import {Avatar, Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
 import {useRouter} from "next/router";
+import Cookies from "js-cookie";
 
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label: string, key: string, icon?: any, children?: any[]) {
@@ -26,6 +27,11 @@ const items = [
     getItem('Users', 'users', <UserOutlined rev={undefined} />, [
         getItem('Users', 'users'),
         getItem('Roles', 'roles'),
+    ]),
+    getItem('Blog', 'blog', <ReadOutlined rev={undefined} />, [
+        getItem('Posts', 'posts'),
+        getItem('Tags', 'tags'),
+        getItem('Comments', 'comments'),
     ]),
 ];
 export default function MainLayout({children, isShowAdd = true}: any) {
@@ -86,7 +92,28 @@ export default function MainLayout({children, isShowAdd = true}: any) {
             }}
         >
             <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
-                <div className="demo-logo-vertical" />
+                <Flex gap={20} align="center" style={{
+                    margin: '20px',
+                    background: '#1b4164',
+                    color: '#fff',
+                    borderRadius: 8,
+                    padding: '10px'
+                }}>
+                    <Avatar size="large">A</Avatar>
+                    <Flex gap={10} vertical={true}>
+                        <div>Admin</div>
+                        <Button
+                            type="primary"
+                            size="small"
+                            onClick={() => {
+                                Cookies.remove('token');
+                                window.location.href = '/';
+                            }}
+                        >
+                            Logout
+                        </Button>
+                    </Flex>
+                </Flex>
                 <Menu
                     theme="dark"
                     defaultSelectedKeys={[selectedKey]}

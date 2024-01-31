@@ -8,6 +8,9 @@ import roles from "~/api/roles";
 import users from "~/api/users";
 import auth from "~/api/auth";
 import Cookies from "js-cookie";
+import blogComments from "~/api/blogComments";
+import blogPosts from "~/api/blogPosts";
+import blogTags from "~/api/blogTags";
 
 let API_URL = '/api';
 
@@ -26,4 +29,7 @@ export const Api = {
     roles: roles(axios, config),
     users: users(axios, config),
     auth: auth(axios, config),
+    blogComments: blogComments(axios, config),
+    blogPosts: blogPosts(axios, config),
+    blogTags: blogTags(axios, config),
 }

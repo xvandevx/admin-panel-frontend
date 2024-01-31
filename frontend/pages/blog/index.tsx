@@ -1,9 +1,9 @@
 import MainLayout from "~/components/layouts/main";
 
-export default function Infobloks() {
+export default function Blog() {
     return (
         <MainLayout>
-            Infobloks
+            Blog
         </MainLayout>
     )
 }
