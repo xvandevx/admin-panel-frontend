@@ -6,16 +6,10 @@ import {
   ForeignKey,
 } from 'sequelize-typescript';
 import { Posts } from '../posts/posts.model';
-
-interface CommentsCreationAttrs {
-  postId: number;
-  isActive: boolean;
-  authorName: string;
-  text: string;
-}
+import { CommentInterface } from '../../../types/blog/comment';
 
 @Table({ tableName: 'blog_comments' })
-export class Comments extends Model<Comments, CommentsCreationAttrs> {
+export class Comments extends Model<Comments, CommentInterface> {
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -36,4 +30,7 @@ export class Comments extends Model<Comments, CommentsCreationAttrs> {
 
   @Column({ type: DataType.STRING, allowNull: false })
   text: string;
+
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  likes: number;
 }

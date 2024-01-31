@@ -7,13 +7,10 @@ import {
 } from 'sequelize-typescript';
 import { Posts } from '../posts/posts.model';
 import { PostTags } from './post-tags';
-
-interface TagsCreationAttrs {
-  name: string;
-}
+import { TagInterface } from '../../../types/blog/tag';
 
 @Table({ tableName: 'blog_tags' })
-export class Tags extends Model<Tags, TagsCreationAttrs> {
+export class Tags extends Model<Tags, TagInterface> {
   @Column({
     type: DataType.INTEGER,
     unique: true,

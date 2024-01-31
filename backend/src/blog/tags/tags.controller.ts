@@ -8,27 +8,26 @@ import {
   Put,
 } from '@nestjs/common';
 import { TagsService } from './tags.service';
-import { CreateTagsDto } from './dto/create-tags.dto';
-import { UpdateTagsDto } from './dto/update-tags.dto';
 import { Public } from '../../common';
+import { GetTagsType, TagDto } from '../../../types/blog/tag';
 
-@Controller('tags')
+@Controller('blog/tags')
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}
 
   @Post()
-  create(@Body() skillsDto: CreateTagsDto) {
+  create(@Body() skillsDto: TagDto) {
     return this.tagsService.add(skillsDto);
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() tagsDto: UpdateTagsDto) {
+  update(@Param('id') id: number, @Body() tagsDto: TagDto) {
     return this.tagsService.update(id, tagsDto);
   }
 
   @Public()
   @Get()
-  getAll() {
+  getAll(): Promise<GetTagsType> {
     return this.tagsService.getAll();
   }
 

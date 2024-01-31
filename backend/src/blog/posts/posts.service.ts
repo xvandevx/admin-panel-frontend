@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreatePostsDto } from './dto/create-posts.dto';
-import { UpdatePostsDto } from './dto/update-posts.dto';
 import { Posts } from './posts.model';
+import { PostDto } from '../../../types/blog/post';
 
 @Injectable()
 export class PostsService {
   constructor(@InjectModel(Posts) private postsRepository: typeof Posts) {}
 
-  async add(dto: CreatePostsDto) {
+  async add(dto: PostDto) {
     const post = await this.postsRepository.create({
       isActive: dto.isActive,
       name: dto.name,
@@ -17,14 +16,11 @@ export class PostsService {
       text: dto.text,
     });
     if (dto.tags) {
-      await post.$set(
-        'tags',
-        dto.tags.split(',').map((id) => Number(id)),
-      );
+      await post.$set('tags', dto.tags);
     }
   }
 
-  async update(id: number, dto: UpdatePostsDto) {
+  async update(id: number, dto: PostDto) {
     const post = await this.postsRepository.findByPk(id);
     await post.update({
       isActive: dto.isActive,
@@ -33,10 +29,7 @@ export class PostsService {
       date: dto.date,
       text: dto.text,
     });
-    await post.$set(
-      'tags',
-      dto.tags.split(',').map((id) => Number(id)),
-    );
+    await post.$set('tags', dto.tags);
   }
 
   async getAll() {

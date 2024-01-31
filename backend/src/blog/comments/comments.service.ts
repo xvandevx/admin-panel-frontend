@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateCommentsDto } from './dto/create-comments.dto';
-import { UpdateCommentsDto } from './dto/update-comments.dto';
 import { Comments } from './comments.model';
+import { CommentDto } from '../../../types/blog/comment';
 
 @Injectable()
 export class CommentsService {
@@ -10,11 +9,11 @@ export class CommentsService {
     @InjectModel(Comments) private commentsRepository: typeof Comments,
   ) {}
 
-  async add(dto: CreateCommentsDto) {
+  async add(dto: CommentDto) {
     await this.commentsRepository.create(dto);
   }
 
-  async update(id: number, dto: UpdateCommentsDto) {
+  async update(id: number, dto: CommentDto) {
     await this.commentsRepository.update(dto, { where: { id } });
   }
 

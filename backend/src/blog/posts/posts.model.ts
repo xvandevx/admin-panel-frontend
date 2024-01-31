@@ -4,24 +4,15 @@ import {
   Column,
   DataType,
   BelongsToMany,
-  BelongsTo,
   HasMany,
 } from 'sequelize-typescript';
 import { Tags } from '../tags/tags.model';
 import { PostTags } from '../tags/post-tags';
 import { Comments } from '../comments/comments.model';
-
-interface PostsCreationAttrs {
-  isActive: boolean;
-  name: string;
-  image: string;
-  date: string;
-  tags: number[];
-  text: string;
-}
+import { PostInterface } from '../../../types/blog/post';
 
 @Table({ tableName: 'blog_posts' })
-export class Posts extends Model<Posts, PostsCreationAttrs> {
+export class Posts extends Model<Posts, PostInterface> {
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -45,9 +36,15 @@ export class Posts extends Model<Posts, PostsCreationAttrs> {
   @Column({ type: DataType.TEXT, allowNull: false })
   text: string;
 
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  likes: number;
+
+  @Column({ type: DataType.INTEGER, allowNull: false })
+  views: number;
+
   @HasMany(() => Comments)
   comments: Comments[];
 
   @BelongsToMany(() => Tags, () => PostTags)
-  tags: Tags;
+  tags: Tags[];
 }

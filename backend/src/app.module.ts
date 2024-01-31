@@ -26,9 +26,6 @@ import { Comments } from './blog/comments/comments.model';
 import { Posts } from './blog/posts/posts.model';
 import { Tags } from './blog/tags/tags.model';
 import { PostTags } from './blog/tags/post-tags';
-import {CommentsModule} from "./blog/comments/comments.module";
-import {PostsModule} from "./blog/posts/posts.module";
-import {TagsModule} from "./blog/tags/tags.module";
 
 @Module({
   imports: [
@@ -59,7 +56,7 @@ import {TagsModule} from "./blog/tags/tags.module";
         Tags,
       ],
       autoLoadModels: true,
-      logging: true,
+      logging: false,
       synchronize: true,
     }),
     WorksModule,

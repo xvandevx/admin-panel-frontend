@@ -8,22 +8,21 @@ import {
   Put,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { CreatePostsDto } from './dto/create-posts.dto';
-import { UpdatePostsDto } from './dto/update-posts.dto';
 import { Public } from '../../common';
+import { GetPostsType, PostDto } from '../../../types/blog/post';
 
-@Controller('posts')
+@Controller('blog/posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
-  create(@Body() skillsDto: CreatePostsDto) {
-    return this.postsService.add(skillsDto);
+  create(@Body() post: PostDto) {
+    return this.postsService.add(post);
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() skillsDto: UpdatePostsDto) {
-    return this.postsService.update(id, skillsDto);
+  update(@Param('id') id: number, @Body() post: PostDto) {
+    return this.postsService.update(id, post);
   }
 
   @Public()

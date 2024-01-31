@@ -8,25 +8,24 @@ import {
   Put,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-import { CreateCommentsDto } from './dto/create-comments.dto';
-import { UpdateCommentsDto } from './dto/update-comments.dto';
+import { CommentDto, GetCommentsType } from '../../../types/blog/comment';
 
-@Controller('comments')
+@Controller('blog/comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
   @Post()
-  create(@Body() commentsDto: CreateCommentsDto) {
+  create(@Body() commentsDto: CommentDto) {
     return this.commentsService.add(commentsDto);
   }
 
   @Put(':id')
-  update(@Param('id') id: number, @Body() commentsDto: UpdateCommentsDto) {
+  update(@Param('id') id: number, @Body() commentsDto: CommentDto) {
     return this.commentsService.update(id, commentsDto);
   }
 
   @Get()
-  getAll() {
+  getAll(): Promise<GetCommentsType> {
     return this.commentsService.getAll();
   }
 
