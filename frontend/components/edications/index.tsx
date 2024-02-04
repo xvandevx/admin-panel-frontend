@@ -1,7 +1,7 @@
 import React from 'react';
 import {Api} from "~/api";
 const _ = require('lodash')
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import dayjs from "dayjs";
 
 interface DataType {
@@ -26,38 +26,38 @@ export default function Edications() {
         {
             name: 'sort',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'universityName',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'link',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'speciality',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'description',
-            type: 'textarea',
+            type: FormEditFieldTypes.textarea,
         },
         {
             name: 'startDate',
-            type: 'date',
+            type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
             name: 'endDate',
-            type: 'date',
+            type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
             name: 'location',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
     ]
 

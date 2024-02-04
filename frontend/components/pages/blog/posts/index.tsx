@@ -1,6 +1,6 @@
 import React from 'react';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
 
 interface DataType {
@@ -23,20 +23,20 @@ export default function Posts() {
         {
             name: 'title',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'code',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'h1',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'description',
-            type: 'textarea',
+            type: FormEditFieldTypes.textarea,
         },
     ]
 

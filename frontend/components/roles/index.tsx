@@ -1,6 +1,6 @@
 import React from 'react';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 const _ = require('lodash');
 
 export default function Roles() {
@@ -12,7 +12,7 @@ export default function Roles() {
         {
             name: 'name',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
     ]
 

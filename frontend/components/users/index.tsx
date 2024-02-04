@@ -1,7 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import {Tag} from "antd";
 const _ = require('lodash');
 interface DataType {
@@ -57,17 +57,17 @@ export default function Users() {
         {
             name: 'name',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'email',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'roles',
             required: true,
-            type: 'select',
+            type: FormEditFieldTypes.string,
             mode: 'multiple',
             options: dataRoles
         },

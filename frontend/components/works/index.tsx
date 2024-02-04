@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {Tag} from 'antd';
 import {Api} from "~/api";
 const _ = require('lodash')
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import dayjs from "dayjs";
 
 interface DataType {
@@ -63,42 +63,42 @@ export default function Works() {
         {
             name: 'sort',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'companyName',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'link',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'position',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'description',
-            type: 'textarea',
+            type: FormEditFieldTypes.textarea,
         },
         {
             name: 'startDate',
-            type: 'date',
+            type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
             name: 'endDate',
-            type: 'date',
+            type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
             name: 'location',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'skills',
-            type: 'select',
+            type: FormEditFieldTypes.select,
             mode: 'multiple',
             options: dataSkills
         },

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 const _ = require('lodash');
 interface DataType {
     key: string;
@@ -22,12 +22,12 @@ export default function Skills() {
         {
             name: 'name',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'category',
             required: true,
-            type: 'select',
+            type: FormEditFieldTypes.string,
             options: [
                 {
                     label: 'Programming languages',
@@ -45,7 +45,7 @@ export default function Skills() {
         },
         {
             name: 'icon',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
     ]
 

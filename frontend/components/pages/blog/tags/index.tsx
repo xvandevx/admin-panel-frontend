@@ -3,7 +3,7 @@ import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
 export default function Tags() {
-    const tableItems: TagDto[] = [
+    const tableItems: string[] = [
         'name',
     ];
 

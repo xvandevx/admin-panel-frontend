@@ -1,6 +1,6 @@
 import React from 'react';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
 
 export default function Comments() {
@@ -15,20 +15,20 @@ export default function Comments() {
         {
             name: 'postId',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'isActive',
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'authorName',
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'text',
-            type: 'textarea',
+            type: FormEditFieldTypes.textarea,
         },
     ]
 
