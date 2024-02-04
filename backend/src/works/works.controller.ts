@@ -4,7 +4,10 @@ import { CreateWorksDto } from "./dto/create-works.dto";
 import {CreatePageDto} from "../pages/dto/create-page.dto";
 import {UpdatePageDto} from "../pages/dto/update-page.dto";
 import {Public} from "../common";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('works')
 @Controller('works')
 export class WorksController {
   constructor(

@@ -2,7 +2,10 @@ import {Body, Controller, Delete, Get, Inject, Param, Post, Put} from '@nestjs/c
 import { EducationsService } from './educations.service';
 import { CreateEducationsDto } from "./dto/create-educations.dto";
 import {Public} from "../common";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('educations')
 @Controller('educations')
 export class EducationsController {
   constructor(

@@ -5,7 +5,10 @@ import {CreateContentDto} from "../contents/dto/create-content.dto";
 import {UpdateContentDto} from "../contents/dto/update-content.dto";
 import {UpdateSkillsDto} from "./dto/update-skills.dto";
 import {Public} from "../common";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('skills')
 @Controller('skills')
 export class SkillsController {
   constructor(

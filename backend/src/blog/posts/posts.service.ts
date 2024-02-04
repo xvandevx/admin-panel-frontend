@@ -14,9 +14,11 @@ export class PostsService {
       image: dto.image,
       date: dto.date,
       text: dto.text,
+      likes: dto.likes,
+      views: dto.views,
     });
-    if (dto.tags) {
-      await post.$set('tags', dto.tags);
+    if (dto.tagIds) {
+      await post.$set('tags', dto.tagIds);
     }
   }
 
@@ -28,8 +30,10 @@ export class PostsService {
       image: dto.image,
       date: dto.date,
       text: dto.text,
+      likes: dto.likes,
+      views: dto.views,
     });
-    await post.$set('tags', dto.tags);
+    await post.$set('tags', dto.tagIds);
   }
 
   async getAll() {
@@ -43,9 +47,5 @@ export class PostsService {
     if (row) {
       await row.destroy(); // deletes the row
     }
-  }
-
-  async getPagesById(id: number) {
-    return await this.postsRepository.findOne({ where: { id } });
   }
 }

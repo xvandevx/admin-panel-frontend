@@ -10,7 +10,10 @@ import {
 import { TagsService } from './tags.service';
 import { Public } from '../../common';
 import { GetTagsType, TagDto } from '../../../types/blog/tag';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('blog')
 @Controller('blog/tags')
 export class TagsController {
   constructor(private readonly tagsService: TagsService) {}

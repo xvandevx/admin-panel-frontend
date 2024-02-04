@@ -3,7 +3,10 @@ import { ContentsService } from './contents.service';
 import { CreateContentDto } from "./dto/create-content.dto";
 import {UpdateContentDto} from "./dto/update-content.dto";
 import {Public} from "../common";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('contents')
 @Controller('contents')
 export class ContentsController {
   constructor(

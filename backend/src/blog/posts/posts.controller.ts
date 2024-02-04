@@ -10,7 +10,10 @@ import {
 import { PostsService } from './posts.service';
 import { Public } from '../../common';
 import { GetPostsType, PostDto } from '../../../types/blog/post';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('blog')
 @Controller('blog/posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
@@ -27,7 +30,7 @@ export class PostsController {
 
   @Public()
   @Get()
-  getAll() {
+  getAll(): Promise<GetPostsType> {
     return this.postsService.getAll();
   }
 

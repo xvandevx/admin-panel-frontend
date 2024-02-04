@@ -3,7 +3,10 @@ import { PagesService } from './pages.service';
 import { CreatePageDto } from "./dto/create-page.dto";
 import {UpdatePageDto} from "./dto/update-page.dto";
 import {Public} from "../common";
+import {ApiBearerAuth, ApiTags} from "@nestjs/swagger";
 
+@ApiBearerAuth()
+@ApiTags('pages')
 @Controller('pages')
 export class PagesController {
   constructor(

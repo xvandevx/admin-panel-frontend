@@ -6,10 +6,12 @@ export interface PostInterface {
   name: string;
   image?: string;
   date: string;
-  tags?: number[];
+  tagIds?: number[];
   text: string;
   views: number;
   likes: number;
+  comments?: CommentDto[];
+  tags?: TagDto[];
 }
 
 export class PostDto implements PostInterface {
@@ -17,15 +19,10 @@ export class PostDto implements PostInterface {
   readonly name: string;
   readonly image?: string;
   readonly date: string;
-  readonly tags?: number[];
+  readonly tagIds?: number[];
   readonly text: string;
   readonly likes: number;
   readonly views: number;
 }
 
-type Post = PostInterface & {
-  tags: TagDto[];
-  comments: CommentDto[];
-};
-
-export type GetPostsType = Post[];
+export type GetPostsType = PostInterface[];

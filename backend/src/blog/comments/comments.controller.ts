@@ -9,7 +9,10 @@ import {
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CommentDto, GetCommentsType } from '../../../types/blog/comment';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiBearerAuth()
+@ApiTags('blog')
 @Controller('blog/comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
