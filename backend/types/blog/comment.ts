@@ -1,3 +1,5 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export enum CommentFields {
   postId = 'postId',
   isActive = 'isActive',
@@ -15,10 +17,15 @@ export interface CommentInterface {
 }
 
 export class CommentDto implements CommentInterface {
+  @ApiProperty()
   readonly postId: number;
+  @ApiProperty()
   readonly isActive: boolean;
+  @ApiProperty()
   readonly authorName: string;
+  @ApiProperty()
   readonly text: string;
+  @ApiProperty()
   readonly likes: number;
 }
 
