@@ -11,7 +11,7 @@ import { SkillsService } from './skills.service';
 import { Public } from '../common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Skills } from './skills.model';
-import { SkillDto } from '../../types/skill';
+import { SkillDto } from './dto/skill.dto';
 
 @ApiBearerAuth()
 @ApiTags('skills')

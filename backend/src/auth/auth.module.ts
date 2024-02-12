@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import {JwtModule} from "@nestjs/jwt";
-import {UsersModule} from "../users/users.module";
-import {ConfigModule} from "@nestjs/config";
+import { JwtModule } from '@nestjs/jwt';
+import { UsersModule } from '../users/users.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   controllers: [AuthController],
@@ -11,18 +11,16 @@ import {ConfigModule} from "@nestjs/config";
   imports: [
     UsersModule,
     ConfigModule.forRoot({
-      envFilePath: `.env`
+      envFilePath: `.env`,
     }),
     JwtModule.register({
       global: true,
       secret: process.env.PRIVATE_KEY || 'SECRET',
       signOptions: {
-        expiresIn: '1h'
-      }
-    })
+        expiresIn: '1h',
+      },
+    }),
   ],
-  exports: [
-    AuthService,
-  ]
+  exports: [AuthService],
 })
 export class AuthModule {}

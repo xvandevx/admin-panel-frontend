@@ -1,24 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import {Educations} from "./educations.model";
-import {InjectModel} from "@nestjs/sequelize";
-import {CreateEducationsDto} from "./dto/create-educations.dto";
+import { Educations } from './educations.model';
+import { InjectModel } from '@nestjs/sequelize';
+import { EducationDto } from './dto/education.dto';
 
 @Injectable()
 export class EducationsService {
-  constructor(@InjectModel(Educations) private educationsRepository: typeof Educations) {}
+  constructor(
+    @InjectModel(Educations) private educationsRepository: typeof Educations,
+  ) {}
 
-  async add(dto: CreateEducationsDto) {
-    const work =  await this.educationsRepository.create(dto);
+  async add(dto: EducationDto) {
+    const work = await this.educationsRepository.create(dto);
   }
 
-  async update(id: number, dto: CreateEducationsDto) {
-    const content = await this.educationsRepository.findByPk(id)
+  async update(id: number, dto: EducationDto) {
+    const content = await this.educationsRepository.findByPk(id);
     // @ts-ignore
     await content.update(dto);
   }
 
   async getAll() {
-    const contents = await this.educationsRepository.findAll({include: {all: true}});
+    const contents = await this.educationsRepository.findAll({
+      include: { all: true },
+    });
     return contents;
   }
 

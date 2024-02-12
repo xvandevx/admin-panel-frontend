@@ -1,5 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger';
-
 export enum WorkFields {
   sort = 'sort',
   companyName = 'companyName',
@@ -20,25 +18,4 @@ export interface WorkInterface {
   [WorkFields.startDate]?: string;
   [WorkFields.endDate]?: string;
   [WorkFields.location]?: string;
-}
-
-export class WorkDto implements WorkInterface {
-  @ApiProperty()
-  readonly sort: number;
-  @ApiProperty()
-  readonly companyName: string;
-  @ApiProperty()
-  readonly link?: string;
-  @ApiProperty()
-  readonly position?: string;
-  @ApiProperty()
-  readonly description?: string;
-  @ApiProperty()
-  readonly startDate?: string;
-  @ApiProperty()
-  readonly endDate?: string;
-  @ApiProperty()
-  readonly location?: string;
-  @ApiProperty()
-  readonly skills?: string;
 }

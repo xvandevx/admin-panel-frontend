@@ -9,8 +9,9 @@ import {
 } from '@nestjs/common';
 import { TagsService } from './tags.service';
 import { Public } from '../../common';
-import { GetTagsType, TagDto } from '../../../types/blog/tag';
+import { GetTagsType } from '../../../types/blog/tag';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { TagDto } from './dto/tag.dto';
 
 @ApiBearerAuth()
 @ApiTags('blog')

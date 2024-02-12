@@ -1,19 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import {Roles} from "./roles.model";
-import {InjectModel} from "@nestjs/sequelize";
-import {CreateRoleDto} from "./dto/create-role.dto";
-import {UpdateRoleDto} from "./dto/update-role.dto";
+import { Roles } from './roles.model';
+import { InjectModel } from '@nestjs/sequelize';
+import { RoleDto } from './dto/role.dto';
 
 @Injectable()
 export class RolesService {
   constructor(@InjectModel(Roles) private rolesRepository: typeof Roles) {}
 
-  async add(dto: CreateRoleDto) {
+  async add(dto: RoleDto) {
     await this.rolesRepository.create(dto);
   }
 
-  async update(id: number, dto: UpdateRoleDto) {
-    await this.rolesRepository.update(dto, {where: { id }});
+  async update(id: number, dto: RoleDto) {
+    await this.rolesRepository.update(dto, { where: { id } });
   }
 
   async getAll() {
@@ -21,12 +20,12 @@ export class RolesService {
   }
 
   async getAdminRole() {
-    return await this.rolesRepository.findOne({where: {name: 'Admin'}})
+    return await this.rolesRepository.findOne({ where: { name: 'Admin' } });
   }
 
   async addAdminRole() {
     return await this.rolesRepository.create({
-      name: 'Admin'
+      name: 'Admin',
     });
   }
 
@@ -37,9 +36,5 @@ export class RolesService {
     if (row) {
       await row.destroy(); // deletes the row
     }
-  }
-
-  async getPagesById(id: number) {
-    return await this.rolesRepository.findOne({where: {id}})
   }
 }

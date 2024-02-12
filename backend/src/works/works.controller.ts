@@ -10,7 +10,7 @@ import {
 import { WorksService } from './works.service';
 import { Public } from '../common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { WorkDto } from '../../types/work';
+import { WorkDto } from './dto/work.dto';
 
 @ApiBearerAuth()
 @ApiTags('works')

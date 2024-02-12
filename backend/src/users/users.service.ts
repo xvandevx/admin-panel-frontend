@@ -1,11 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Users } from './users.model';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateUsersDto } from './dto/create-users.dto';
-import { UpdateUsersDto } from './dto/update-users.dto';
-import { PagesService } from '../pages/pages.service';
-import { Roles } from '../roles/roles.model';
 import { RolesService } from '../roles/roles.service';
+import { UserDto } from './dto/user.dto';
 
 @Injectable()
 export class UsersService {
@@ -35,7 +32,7 @@ export class UsersService {
     }
   }
 
-  async add(dto: CreateUsersDto) {
+  async add(dto: UserDto) {
     const user = await this.usersRepository.create(dto);
     await user.$set(
       'roles',
@@ -43,7 +40,7 @@ export class UsersService {
     );
   }
 
-  async update(id: number, dto: UpdateUsersDto) {
+  async update(id: number, dto: UserDto) {
     const content = await this.usersRepository.findByPk(id);
     await content.update({
       name: dto.name,
@@ -69,10 +66,6 @@ export class UsersService {
     if (row) {
       await row.destroy(); // deletes the row
     }
-  }
-
-  async getPagesById(id: number) {
-    return await this.usersRepository.findOne({ where: { id } });
   }
 
   async getUserByEmail(email: string) {

@@ -8,8 +8,9 @@ import {
   Put,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
-import { CommentDto, GetCommentsType } from '../../../types/blog/comment';
+import { GetCommentsType } from '../../../types/blog/comment';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { CommentDto } from './dto/comment.dto';
 
 @ApiBearerAuth()
 @ApiTags('blog')

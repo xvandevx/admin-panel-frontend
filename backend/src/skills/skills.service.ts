@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Skills } from './skills.model';
 import { InjectModel } from '@nestjs/sequelize';
-import { SkillDto } from '../../types/skill';
+import { SkillDto } from './dto/skill.dto';
 
 @Injectable()
 export class SkillsService {
