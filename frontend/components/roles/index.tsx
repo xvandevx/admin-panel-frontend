@@ -1,16 +1,17 @@
 import React from 'react';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
+import {RoleFields} from "~/backendTypes/role";
 const _ = require('lodash');
 
 export default function Roles() {
-    const tableItems: string[] = [
-        'name',
+    const tableItems: RoleFields[] = [
+        RoleFields.name,
     ];
 
     const editFormItems = [
         {
-            name: 'name',
+            name: RoleFields.name,
             required: true,
             type: FormEditFieldTypes.string,
         },

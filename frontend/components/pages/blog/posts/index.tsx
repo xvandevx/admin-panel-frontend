@@ -2,41 +2,58 @@ import React from 'react';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
-
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
+import {PostFields} from "~/backendTypes/blog/post";
 
 export default function Posts() {
     const tableItems: string[] = [
-        'title',
-        'code',
-        'h1',
-        'description'
+        PostFields.isActive,
+        PostFields.name,
+        PostFields.image,
+        PostFields.date,
+        PostFields.views,
+        PostFields.likes,
+        PostFields.comments,
+        PostFields.tags,
     ];
 
     const editFormItems = [
         {
-            name: 'title',
+            name: PostFields.isActive,
+            required: true,
+            type: FormEditFieldTypes.boolean,
+        },
+        {
+            name: PostFields.name,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'code',
+            name: PostFields.image,
+            type: FormEditFieldTypes.string,
+        },
+        {
+            name: PostFields.date,
+            required: true,
+            type: FormEditFieldTypes.date,
+        },
+        {
+            name: PostFields.tagIds,
+            type: FormEditFieldTypes.string,
+        },
+        {
+            name: PostFields.text,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'h1',
+            name: PostFields.views,
+            required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'description',
-            type: FormEditFieldTypes.textarea,
+            name: PostFields.likes,
+            required: true,
+            type: FormEditFieldTypes.string,
         },
     ]
 

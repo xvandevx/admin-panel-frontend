@@ -4,23 +4,17 @@ import {Api} from "~/api";
 const _ = require('lodash')
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import dayjs from "dayjs";
-
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
+import {WorkFields} from "~/backendTypes/work";
 
 export default function Works() {
-    const tableItems: string[] = [
-        'sort',
-        'companyName',
-        'position',
-        'startDate',
-        'endDate',
-        'location',
+    const tableItems: WorkFields[] = [
+        WorkFields.sort,
+        WorkFields.companyName,
+        WorkFields.position,
+        WorkFields.startDate,
+        WorkFields.endDate,
+        WorkFields.location,
+        // @ts-ignore
         'skills'
     ];
 
@@ -43,6 +37,7 @@ export default function Works() {
 
     const getSkills = async () => {
         const skills = await Api.skills.get();
+        // @ts-ignore
         setSkills(skills);
     }
 
@@ -61,39 +56,39 @@ export default function Works() {
 
     const editFormItems = [
         {
-            name: 'sort',
+            name: WorkFields.sort,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'companyName',
+            name: WorkFields.companyName,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'link',
+            name: WorkFields.link,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'position',
+            name: WorkFields.position,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'description',
+            name: WorkFields.description,
             type: FormEditFieldTypes.textarea,
         },
         {
-            name: 'startDate',
+            name: WorkFields.startDate,
             type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
-            name: 'endDate',
+            name: WorkFields.endDate,
             type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
-            name: 'location',
+            name: WorkFields.location,
             type: FormEditFieldTypes.string,
         },
         {

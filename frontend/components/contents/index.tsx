@@ -1,23 +1,17 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {Col, Form, Input, Radio, Row, Tag} from 'antd';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock/";
-
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock/";
+import {ContentFields} from "~/backendTypes/content";
 const _ = require('lodash');
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
 
 export default function Contents() {
-    const tableItems: string[] = [
-        'name',
-        'code',
-        'type',
-        'value',
+    const tableItems: ContentFields[] = [
+        ContentFields.name,
+        ContentFields.code,
+        ContentFields.type,
+        ContentFields.value,
+        // @ts-ignore
         'pages',
     ];
 
@@ -41,6 +35,7 @@ export default function Contents() {
 
     const getPages = async () => {
         const data = await Api.pages.get();
+        // @ts-ignore
         setPages(data);
     }
 
@@ -59,26 +54,26 @@ export default function Contents() {
 
     const editFormItems = [
         {
-            name: 'name',
+            name: ContentFields.name,
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
-            name: 'code',
+            name: ContentFields.code,
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
             name: 'pages',
             required: true,
-            type: 'select',
+            type: FormEditFieldTypes.select,
             mode: 'multiple',
             options: dataPages
         },
         {
-            name: 'type',
+            name: ContentFields.type,
             required: true,
-            type: 'custom',
+            type: FormEditFieldTypes.custom,
             render: <Radio.Group
                 onChange={(e) => {
                     setType(e.target.value)

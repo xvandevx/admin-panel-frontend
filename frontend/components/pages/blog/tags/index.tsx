@@ -2,14 +2,15 @@ import React from 'react';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
+import {TagFields} from "~/backendTypes/blog/tag";
 export default function Tags() {
-    const tableItems: string[] = [
-        'name',
+    const tableItems: TagFields[] = [
+        TagFields.name,
     ];
 
     const editFormItems = [
         {
-            name: 'name',
+            name: TagFields.name,
             required: true,
             type: FormEditFieldTypes.string,
         },

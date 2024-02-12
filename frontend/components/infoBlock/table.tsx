@@ -3,13 +3,7 @@ import {Table, Popconfirm} from 'antd';
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons';
 import { Button, Space } from 'antd';
 import {useRouter} from "next/router";
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
+
 
 export default function InfoBlockTable({
     tableItems,

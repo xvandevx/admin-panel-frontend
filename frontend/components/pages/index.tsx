@@ -1,42 +1,35 @@
 import React from 'react';
 import {Api} from "~/api";
-import InfoBlock from "~/components/infoBlock";
+import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
-
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
+import {PageFields} from "~/backendTypes/page";
 
 export default function Pages() {
-    const tableItems: string[] = [
-        'title',
-        'code',
-        'h1',
-        'description'
+    const tableItems: PageFields[] = [
+        PageFields.title,
+        PageFields.code,
+        PageFields.h1,
+        PageFields.description
     ];
 
     const editFormItems = [
         {
-            name: 'title',
+            name: PageFields.title,
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
-            name: 'code',
+            name: PageFields.code,
             required: true,
-            type: 'string',
+            type: FormEditFieldTypes.string,
         },
         {
-            name: 'h1',
-            type: 'string',
+            name: PageFields.h1,
+            type: FormEditFieldTypes.string,
         },
         {
-            name: 'description',
-            type: 'textarea',
+            name: PageFields.description,
+            type: FormEditFieldTypes.textarea,
         },
     ]
 

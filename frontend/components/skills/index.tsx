@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
+import {SkillFields} from "~/backendTypes/skill";
 const _ = require('lodash');
 interface DataType {
     key: string;
@@ -12,20 +13,20 @@ interface DataType {
 }
 
 export default function Skills() {
-    const tableItems: string[] = [
-        'name',
-        'category',
-        'icon'
+    const tableItems: SkillFields[] = [
+        SkillFields.name,
+        SkillFields.category,
+        SkillFields.icon
     ];
 
     const editFormItems = [
         {
-            name: 'name',
+            name: SkillFields.name,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'category',
+            name: SkillFields.category,
             required: true,
             type: FormEditFieldTypes.string,
             options: [
@@ -44,7 +45,7 @@ export default function Skills() {
             ]
         },
         {
-            name: 'icon',
+            name: SkillFields.icon,
             type: FormEditFieldTypes.string,
         },
     ]

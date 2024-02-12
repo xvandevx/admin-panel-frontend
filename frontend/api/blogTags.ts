@@ -1,15 +1,17 @@
+import {TagInterface} from "~/backendTypes/blog/tag";
+
 export default (axios: any, config: any) => ({
-    async add(formData: any) {
+    async add(formData: TagInterface) {
         const req = Object.entries(formData).map(params => params.join(`=`)).join(`&`);
         const {data} = await axios.post(`${config.API_URL}/blog/tags`, req);
         return data;
     },
-    async update(id: number, formData: any) {
+    async update(id: number, formData: TagInterface) {
         const req = Object.entries(formData).map(params => params.join(`=`)).join(`&`);
         const {data} = await axios.put(`${config.API_URL}/blog/tags/${id}`, req);
         return data;
     },
-    async get() {
+    async get(): Promise<TagInterface[]> {
         const {data} = await axios.get(`${config.API_URL}/blog/tags`);
         return data;
     },

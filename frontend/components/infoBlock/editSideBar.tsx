@@ -5,13 +5,7 @@ import {Api} from "~/api";
 import {useRouter} from "next/router";
 import { subscribe, unsubscribe } from "~/utils/events";
 const _ = require('lodash');
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
+
 
 export default function InfoBlock({id, tableItems, renderTableItems}: any) {
     const router = useRouter();
@@ -65,6 +59,7 @@ export default function InfoBlock({id, tableItems, renderTableItems}: any) {
 
     const getItems = async () => {
         const data = await Api.contents.get();
+        // @ts-ignore
         setData(data);
         setIsLoaded(true);
     }
@@ -119,6 +114,7 @@ export default function InfoBlock({id, tableItems, renderTableItems}: any) {
 
     const getPages = async () => {
         const data = await Api.pages.get();
+        // @ts-ignore
         setPages(data);
     }
 

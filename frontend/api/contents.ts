@@ -1,15 +1,17 @@
+import {ContentInterface} from "~/backendTypes/content";
+
 export default (axios: any, config: any) => ({
-    async add(formData: any) {
+    async add(formData: ContentInterface) {
         const req = Object.entries(formData).map(params => params.join(`=`)).join(`&`);
         const {data} = await axios.post(`${config.API_URL}/contents`, req);
         return data;
     },
-    async update(id: number, formData: any) {
+    async update(id: number, formData: ContentInterface) {
         const req = Object.entries(formData).map(params => params.join(`=`)).join(`&`);
         const {data} = await axios.put(`${config.API_URL}/contents/${id}`, req);
         return data;
     },
-    async get() {
+    async get(): Promise<ContentInterface> {
         const {data} = await axios.get(`${config.API_URL}/contents`);
         return data;
     },

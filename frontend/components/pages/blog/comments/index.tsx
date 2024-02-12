@@ -2,32 +2,33 @@ import React from 'react';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
+import {CommentFields} from "~/backendTypes/blog/comment";
 
 export default function Comments() {
-    const tableItems: string[] = [
-        'postId',
-        'isActive',
-        'authorName',
-        'text'
+    const tableItems: CommentFields[] = [
+        CommentFields.postId,
+        CommentFields.isActive,
+        CommentFields.authorName,
+        CommentFields.text
     ];
 
     const editFormItems = [
         {
-            name: 'postId',
+            name: CommentFields.postId,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'isActive',
+            name: CommentFields.isActive,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'authorName',
+            name: CommentFields.authorName,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'text',
+            name: CommentFields.text,
             type: FormEditFieldTypes.textarea,
         },
     ]

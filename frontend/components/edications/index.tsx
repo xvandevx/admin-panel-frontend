@@ -3,60 +3,53 @@ import {Api} from "~/api";
 const _ = require('lodash')
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import dayjs from "dayjs";
-
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
+import {EducationFields} from "~/backendTypes/education";
 
 export default function Edications() {
-    const tableItems: string[] = [
-        'sort',
-        'universityName',
-        'speciality',
-        'startDate',
-        'endDate',
-        'location',
+    const tableItems: EducationFields[] = [
+        EducationFields.sort,
+        EducationFields.universityName,
+        EducationFields.speciality,
+        EducationFields.startDate,
+        EducationFields.endDate,
+        EducationFields.location,
     ];
 
     const editFormItems = [
         {
-            name: 'sort',
+            name: EducationFields.sort,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'universityName',
+            name:  EducationFields.universityName,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'link',
+            name: EducationFields.link,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'speciality',
+            name: EducationFields.speciality,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'description',
+            name: EducationFields.description,
             type: FormEditFieldTypes.textarea,
         },
         {
-            name: 'startDate',
+            name: EducationFields.startDate,
             type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
-            name: 'endDate',
+            name: EducationFields.endDate,
             type: FormEditFieldTypes.date,
             picker: "month"
         },
         {
-            name: 'location',
+            name: EducationFields.location,
             type: FormEditFieldTypes.string,
         },
     ]

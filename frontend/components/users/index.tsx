@@ -3,20 +3,14 @@ import {LoadingOutlined, PlusOutlined} from '@ant-design/icons';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import {Tag} from "antd";
+import {UserFields} from "~/backendTypes/user";
 const _ = require('lodash');
-interface DataType {
-    key: string;
-    name: string;
-    email: number;
-    password: string;
-    tags: string[];
-}
 
 export default function Users() {
-    const tableItems: string[] = [
-        'name',
-        'roles',
-        'email',
+    const tableItems: UserFields[] = [
+        UserFields.name,
+        UserFields.roles,
+        UserFields.email,
     ];
 
     const renderTableItems = {
@@ -37,6 +31,7 @@ export default function Users() {
 
     const getRoles = async () => {
         const data = await Api.roles.get();
+        // @ts-ignore
         setRoles(data);
     }
 
@@ -55,17 +50,17 @@ export default function Users() {
 
     const editFormItems = [
         {
-            name: 'name',
+            name: UserFields.name,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'email',
+            name: UserFields.email,
             required: true,
             type: FormEditFieldTypes.string,
         },
         {
-            name: 'roles',
+            name: UserFields.roles,
             required: true,
             type: FormEditFieldTypes.string,
             mode: 'multiple',
