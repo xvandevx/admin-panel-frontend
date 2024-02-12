@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Pages } from './pages.model';
 import { InjectModel } from '@nestjs/sequelize';
-import { PageDto } from '../../types/page';
+import { PageDto } from './dto/page.dto';
 
 @Injectable()
 export class PagesService {

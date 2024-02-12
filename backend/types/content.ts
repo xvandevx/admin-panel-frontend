@@ -1,6 +1,13 @@
+export enum ContentFields {
+  name = 'name',
+  code = 'code',
+  type = 'type',
+  value = 'value',
+}
+
 export interface ContentInterface {
-  name: string;
-  code: string;
-  type: string;
-  value: string;
+  [ContentFields.name]: string;
+  [ContentFields.code]: string;
+  [ContentFields.type]: string;
+  [ContentFields.value]: string;
 }

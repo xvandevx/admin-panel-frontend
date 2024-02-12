@@ -1,5 +1,9 @@
+export enum TagFields {
+  name = 'name',
+}
+
 export interface TagInterface {
-  name: string;
+  [TagFields.name]: string;
 }
 
 export type GetTagsType = TagInterface[];
