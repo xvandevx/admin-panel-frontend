@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from 'react';
 
 import {
-    DatabaseOutlined, PlusOutlined, ReadOutlined, UserOutlined,
+    DatabaseOutlined, DeliveredProcedureOutlined, PlusOutlined, ReadOutlined, UserOutlined,
 } from '@ant-design/icons';
 import {Avatar, Breadcrumb, Button, Flex, Layout, Menu, theme} from 'antd';
 import {useRouter} from "next/router";
@@ -33,6 +33,7 @@ const items = [
         getItem('Tags', 'tags'),
         getItem('Comments', 'comments'),
     ]),
+    getItem('Backup', 'backup', <DeliveredProcedureOutlined rev={undefined} />),
 ];
 export default function MainLayout({children, isShowAdd = true}: any) {
     const router = useRouter();

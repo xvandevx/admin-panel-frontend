@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import blogComments from "~/api/blogComments";
 import blogPosts from "~/api/blogPosts";
 import blogTags from "~/api/blogTags";
+import backup from "~/api/backup";
 
 let API_URL = '/api';
 
@@ -32,4 +33,5 @@ export const Api = {
     blogComments: blogComments(axios, config),
     blogPosts: blogPosts(axios, config),
     blogTags: blogTags(axios, config),
+    backup: backup(axios, config),
 }

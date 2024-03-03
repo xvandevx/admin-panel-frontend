@@ -26,6 +26,7 @@ import { Comments } from './blog/comments/comments.model';
 import { Posts } from './blog/posts/posts.model';
 import { Tags } from './blog/tags/tags.model';
 import { PostTags } from './blog/tags/post-tags';
+import { BackupModule } from './backup/backup.module';
 
 @Module({
   imports: [
@@ -68,6 +69,7 @@ import { PostTags } from './blog/tags/post-tags';
     RolesModule,
     AuthModule,
     BlogModule,
+    BackupModule,
   ],
   controllers: [],
   providers: [
