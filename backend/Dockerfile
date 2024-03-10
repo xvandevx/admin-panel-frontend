@@ -33,4 +33,4 @@ EXPOSE 3010
 
 ENV PORT 3010
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main"]
