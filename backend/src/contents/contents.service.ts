@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Contents } from './contents.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { PagesService } from '../pages/pages.service';
 import { ContentDto } from './dto/content.dto';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class ContentsService {
@@ -12,6 +13,14 @@ export class ContentsService {
   ) {}
 
   async add(dto: ContentDto) {
+    const errors = await validate(dto);
+    if (errors.length > 0) {
+      const errorMessage = errors
+        .map((error) => Object.values(error.constraints))
+        .join(', ');
+      throw new BadRequestException(errorMessage);
+    }
+
     const content = await this.contentsRepository.create(dto);
     await content.$set(
       'pages',
@@ -20,6 +29,14 @@ export class ContentsService {
   }
 
   async update(id: number, dto: ContentDto) {
+    const errors = await validate(dto);
+    if (errors.length > 0) {
+      const errorMessage = errors
+        .map((error) => Object.values(error.constraints))
+        .join(', ');
+      throw new BadRequestException(errorMessage);
+    }
+
     const content = await this.contentsRepository.findByPk(id);
     await content.update({
       name: dto.name,

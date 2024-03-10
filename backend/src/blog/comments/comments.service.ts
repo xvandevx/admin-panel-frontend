@@ -18,7 +18,9 @@ export class CommentsService {
   }
 
   async getAll() {
-    return await this.commentsRepository.findAll();
+    return await this.commentsRepository.findAll({
+      include: { all: true },
+    });
   }
 
   async delete(id) {

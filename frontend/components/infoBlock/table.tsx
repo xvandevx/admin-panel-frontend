@@ -16,8 +16,13 @@ export default function InfoBlockTable({
     const routerRoot = useMemo(() => {
         return router.pathname.replace('/[...id]', '');
     }, [])
+
+
+    const getName = (name: string) => {
+        return name.split(/(?=[A-Z])/).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+
     const columns = useMemo(() => {
-        console.log('renderTableItems', renderTableItems, tableItems)
         return [
             {
                 title: 'Id',
@@ -29,7 +34,7 @@ export default function InfoBlockTable({
             },
             ...tableItems.map((item: any) => {
                 const items: any = {
-                    title: item[0].toUpperCase() + item.substring(1),
+                    title: getName(item),
                     dataIndex: item,
                     key: item,
                 }
@@ -75,9 +80,14 @@ export default function InfoBlockTable({
 
     const dataSource = useMemo(() => {
         return data.map((item: any) => {
+            for (const val in item) {
+                if (typeof item[val] === 'boolean') {
+                     item[val] = (item[val] && 'yes');
+                }
+            }
             return {
                 key: item.id,
-                ...item,
+                ...item
             }
         })
     }, [data])

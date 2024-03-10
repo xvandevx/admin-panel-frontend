@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import _ from "lodash";
 import {PostFields} from "~/backendTypes/blog/post";
+import {Tag} from "antd";
+import dayjs from "dayjs";
 
 export default function Posts() {
     const tableItems: string[] = [
@@ -12,14 +14,48 @@ export default function Posts() {
         PostFields.date,
         PostFields.views,
         PostFields.likes,
-        PostFields.comments,
         PostFields.tags,
     ];
+
+
+    const [tags, setTags] = useState([]);
+
+    const getTags = async () => {
+        const tags = await Api.blogTags.get();
+        // @ts-ignore
+        setTags(tags);
+    }
+
+    useEffect( () => {
+        getTags();
+    }, []);
+
+    const dataTags = useMemo(() => {
+        return tags?.map((item: any) => {
+            return {
+                label: item.name,
+                value: item.id,
+            }
+        })
+    }, [tags])
+
+    const renderTableItems = {
+        [PostFields.tags]: (_: any, { tags }: any) => (
+            <>
+                {tags?.map((tag: any) => {
+                    return (
+                        <Tag key={tag.id}>
+                            {tag.name}
+                        </Tag>
+                    );
+                })}
+            </>
+        ),
+    };
 
     const editFormItems = [
         {
             name: PostFields.isActive,
-            required: true,
             type: FormEditFieldTypes.boolean,
         },
         {
@@ -38,7 +74,9 @@ export default function Posts() {
         },
         {
             name: PostFields.tagIds,
-            type: FormEditFieldTypes.string,
+            type: FormEditFieldTypes.select,
+            mode: 'multiple',
+            options: dataTags
         },
         {
             name: PostFields.text,
@@ -66,9 +104,12 @@ export default function Posts() {
             addItem={Api.blogPosts.add}
             prepareFormFields={(record: any) => {
                 const data =  _.cloneDeep(record)
+                data.date = data.date ? dayjs(data.date) : ''
+                data.tagIds = data.tags?.map(({id}: any) => id);
                 return data
             }}
             editFormItems={editFormItems}
+            renderTableItems={renderTableItems}
         />
     )
 }

@@ -16,7 +16,7 @@ export interface PostInterface {
   [PostFields.name]: string;
   [PostFields.image]?: string;
   [PostFields.date]: string;
-  [PostFields.tagIds]?: number[];
+  [PostFields.tagIds]?: string;
   [PostFields.text]: string;
   [PostFields.views]: number;
   [PostFields.likes]: number;

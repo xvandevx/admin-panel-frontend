@@ -66,7 +66,6 @@ export default function InfoBlock({
     };
 
     const onClose = async () => {
-        console.log(routerRoot)
         await router.replace(routerRoot , routerRoot)
         form.resetFields();
     };
@@ -74,7 +73,9 @@ export default function InfoBlock({
     const [data, setData] = useState([]);
 
     const getItems = async () => {
-        setData(await getTableItems());
+        const items = await getTableItems();
+        console.log('titsetset', items)
+        setData(items);
         setIsLoaded(true);
     }
 
@@ -92,6 +93,10 @@ export default function InfoBlock({
             }
         }
     }, [currentId, isLoaded]);
+
+    const getName = (name: string) => {
+        return name.split(/(?=[A-Z])/).map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
 
     return (
         <>
@@ -128,9 +133,9 @@ export default function InfoBlock({
                                 <Row gutter={16}>
                                     <Col span={24}>
                                         <Form.Item
+                                            valuePropName="checked"
                                             name={item.name}
-                                            label={item.name}
-                                            rules={[{required: item.required, message: `Please enter ${item.name}`}]}
+                                            label={getName(item.name)}
                                         >
                                             <Checkbox/>
                                         </Form.Item>
@@ -142,7 +147,7 @@ export default function InfoBlock({
                                     <Col span={24}>
                                         <Form.Item
                                             name={item.name}
-                                            label={item.name}
+                                            label={getName(item.name)}
                                             rules={[{required: item.required, message: `Please enter ${item.name}`}]}
                                         >
                                             <Input/>
@@ -155,7 +160,7 @@ export default function InfoBlock({
                                     <Col span={24}>
                                         <Form.Item
                                             name={item.name}
-                                            label={item.name}
+                                            label={getName(item.name)}
                                             rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
                                         >
                                             <Input.TextArea
@@ -170,7 +175,7 @@ export default function InfoBlock({
                                     <Col span={24}>
                                         <Form.Item
                                             name={item.name}
-                                            label={item.name}
+                                            label={getName(item.name)}
                                             rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
                                         >
                                             <DatePicker picker={item.picker} />
@@ -183,7 +188,7 @@ export default function InfoBlock({
                                     <Col span={24}>
                                         <Form.Item
                                             name={item.name}
-                                            label={item.name}
+                                            label={getName(item.name)}
                                             rules={[{ required: item.required, message: `Please enter ${item.name}` }]}
                                         >
                                             <Select

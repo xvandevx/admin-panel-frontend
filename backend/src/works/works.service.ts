@@ -1,27 +1,87 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Works } from './works.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { WorkDto } from './dto/work.dto';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class WorksService {
   constructor(@InjectModel(Works) private worksRepository: typeof Works) {}
 
   async add(dto: WorkDto) {
-    const work = await this.worksRepository.create(dto);
+    const errors = await validate(dto);
+    if (errors.length > 0) {
+      const errorMessage = errors
+        .map((error) => Object.values(error.constraints))
+        .join(', ');
+      throw new BadRequestException(errorMessage);
+    }
+
+    const {
+      sort,
+      companyName,
+      link,
+      position,
+      description,
+      startDate,
+      endDate,
+      location,
+      skills,
+    } = dto;
+    const work = await this.worksRepository.create({
+      sort,
+      companyName,
+      link,
+      position,
+      description,
+      startDate,
+      endDate,
+      location,
+    });
+
     await work.$set(
       'skills',
-      dto.skills.split(',').map((id) => Number(id)),
+      skills ? skills?.split(',').map((id) => Number(id)) : [],
     );
   }
 
   async update(id: number, dto: WorkDto) {
+    const errors = await validate(dto);
+    if (errors.length > 0) {
+      const errorMessage = errors
+        .map((error) => Object.values(error.constraints))
+        .join(', ');
+      throw new BadRequestException(errorMessage);
+    }
+
     const content = await this.worksRepository.findByPk(id);
-    // @ts-ignore
-    await content.update(dto);
+
+    const {
+      sort,
+      companyName,
+      link,
+      position,
+      description,
+      startDate,
+      endDate,
+      location,
+      skills,
+    } = dto;
+
+    await content.update({
+      sort,
+      companyName,
+      link,
+      position,
+      description,
+      startDate,
+      endDate,
+      location,
+    });
+
     await content.$set(
       'skills',
-      dto.skills.split(',').map((id) => Number(id)),
+      skills ? skills?.split(',').map((id) => Number(id)) : [],
     );
   }
 

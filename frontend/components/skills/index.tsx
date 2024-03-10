@@ -4,13 +4,6 @@ import {Api} from "~/api";
 import InfoBlock, {FormEditFieldTypes} from "~/components/infoBlock";
 import {SkillFields} from "~/backendTypes/skill";
 const _ = require('lodash');
-interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
-}
 
 export default function Skills() {
     const tableItems: SkillFields[] = [

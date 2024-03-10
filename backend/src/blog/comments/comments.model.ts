@@ -3,7 +3,7 @@ import {
   Table,
   Column,
   DataType,
-  ForeignKey,
+  ForeignKey, HasOne, BelongsTo,
 } from 'sequelize-typescript';
 import { Posts } from '../posts/posts.model';
 import { CommentInterface } from '../../../types/blog/comment';
@@ -33,4 +33,7 @@ export class Comments extends Model<Comments, CommentInterface> {
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   likes: number;
+
+  @BelongsTo(() => Posts)
+  post: Posts;
 }

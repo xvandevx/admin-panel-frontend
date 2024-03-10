@@ -12,8 +12,8 @@ const tableList = [
   'work_skills',
   'page_contents',
   'blog_tags',
-  'blog_comments',
   'blog_posts',
+  'blog_comments',
   'blog_post_tags',
 ];
 

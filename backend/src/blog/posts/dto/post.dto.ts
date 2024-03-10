@@ -11,7 +11,7 @@ export class PostDto implements PostInterface {
   @ApiProperty()
   readonly date: string;
   @ApiProperty()
-  readonly tagIds?: number[];
+  readonly tagIds?: string;
   @ApiProperty()
   readonly text: string;
   @ApiProperty()
