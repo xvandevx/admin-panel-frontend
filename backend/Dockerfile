@@ -27,7 +27,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
-RUN mkdir -p /app/backups && chown -R nextjs:nodejs /app/backups
+RUN mkdir /app/backups && chmod -R 777 /app/backups
 
 USER nextjs
 
