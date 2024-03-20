@@ -28,7 +28,7 @@ export class Comments extends Model<Comments, CommentInterface> {
   @Column({ type: DataType.STRING, allowNull: false })
   authorName: string;
 
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({ type: DataType.TEXT, allowNull: false })
   text: string;
 
   @Column({ type: DataType.INTEGER, allowNull: false })

@@ -19,6 +19,14 @@ export class PagesService {
     return await this.pagesRepository.findAll();
   }
 
+  async getByCode(code) {
+    const row = await this.pagesRepository.findOne({
+      where: { code },
+      include: { all: true },
+    });
+    return row;
+  }
+
   async delete(id) {
     const row = await this.pagesRepository.findOne({
       where: { id },

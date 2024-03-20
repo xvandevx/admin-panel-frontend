@@ -28,7 +28,7 @@ export class Contents extends Model<Contents, ContentInterface> {
   @Column({ type: DataType.STRING, allowNull: false })
   type: string;
 
-  @Column({ type: DataType.STRING, allowNull: false })
+  @Column({ type: DataType.TEXT, allowNull: false })
   value: string;
 
   @BelongsToMany(() => Pages, () => PageContents)

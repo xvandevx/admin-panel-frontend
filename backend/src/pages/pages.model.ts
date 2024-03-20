@@ -28,7 +28,7 @@ export class Pages extends Model<Pages, PageInterface> {
   @Column({ type: DataType.STRING })
   h1: string;
 
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.TEXT })
   description: string;
 
   @BelongsToMany(() => Contents, () => PageContents)

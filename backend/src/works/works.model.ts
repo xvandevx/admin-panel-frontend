@@ -31,7 +31,7 @@ export class Works extends Model<Works, WorkInterface> {
   @Column({ type: DataType.STRING })
   position: string;
 
-  @Column({ type: DataType.STRING })
+  @Column({ type: DataType.TEXT })
   description: string;
 
   @Column({ type: DataType.STRING })

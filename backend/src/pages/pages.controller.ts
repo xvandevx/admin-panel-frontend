@@ -34,6 +34,12 @@ export class PagesController {
     return this.pagesService.getAll();
   }
 
+  @Public()
+  @Get('/:code')
+  getByCode(@Param('code') code: string) {
+    return this.pagesService.getByCode(code);
+  }
+
   @Delete('/:id')
   delete(@Param('id') id: number) {
     return this.pagesService.delete(id);
