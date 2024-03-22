@@ -72,6 +72,7 @@ export class PostsService {
   async delete(id) {
     const row = await this.postsRepository.findOne({
       where: { id },
+      order: [['id', 'ASC']],
     });
     if (row) {
       await row.destroy(); // deletes the row

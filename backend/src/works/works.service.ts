@@ -88,6 +88,7 @@ export class WorksService {
   async getAll() {
     const contents = await this.worksRepository.findAll({
       include: { all: true },
+      order: [['sort', 'ASC']],
     });
     return contents;
   }
