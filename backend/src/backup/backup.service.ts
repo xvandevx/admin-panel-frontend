@@ -15,6 +15,8 @@ const tableList = [
   'blog_posts',
   'blog_comments',
   'blog_post_tags',
+  'knowledge',
+  'knowledge_skills',
 ];
 
 @Injectable()

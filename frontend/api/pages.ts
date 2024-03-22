@@ -15,6 +15,10 @@ export default (axios: any, config: any) => ({
         const {data} = await axios.get(`${config.API_URL}/pages`,  {withCredentials: true});
         return data;
     },
+    async getByCode(code: string): Promise<PageInterface[]> {
+        const {data} = await axios.get(`${config.API_URL}/pages/${code}`,  {withCredentials: true});
+        return data;
+    },
     async delete(id: number) {
         await axios.delete(`${config.API_URL}/pages/${id}`, {withCredentials: true});
     }

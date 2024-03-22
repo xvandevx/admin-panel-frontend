@@ -21,19 +21,23 @@ export default function Skills() {
         {
             name: SkillFields.category,
             required: true,
-            type: FormEditFieldTypes.string,
+            type: FormEditFieldTypes.select,
             options: [
                 {
                     label: 'Programming languages',
-                    value: 'Programming languages',
+                    value: 'programmingLanguages',
+                },
+                {
+                    label: 'Frameworks',
+                    value: 'frameworks',
                 },
                 {
                     label: 'Os',
-                    value: 'Os',
+                    value: 'os',
                 },
                 {
-                    label: 'Tools',
-                    value: 'Tools',
+                    label: 'Other',
+                    value: 'other',
                 }
             ]
         },

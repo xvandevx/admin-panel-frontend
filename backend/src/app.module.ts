@@ -27,6 +27,9 @@ import { Posts } from './blog/posts/posts.model';
 import { Tags } from './blog/tags/tags.model';
 import { PostTags } from './blog/tags/post-tags';
 import { BackupModule } from './backup/backup.module';
+import { Knowledges } from './knowledges/knowledges.model';
+import { KnowledgesSkills } from './knowledges/knowledge-skills.model';
+import { KnowledgesModule } from './knowledges/knowledges.module';
 
 @Module({
   imports: [
@@ -55,6 +58,8 @@ import { BackupModule } from './backup/backup.module';
         PostTags,
         Posts,
         Tags,
+        Knowledges,
+        KnowledgesSkills,
       ],
       autoLoadModels: true,
       logging: false,
@@ -70,6 +75,7 @@ import { BackupModule } from './backup/backup.module';
     AuthModule,
     BlogModule,
     BackupModule,
+    KnowledgesModule,
   ],
   controllers: [],
   providers: [
