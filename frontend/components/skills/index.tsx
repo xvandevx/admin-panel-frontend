@@ -32,6 +32,18 @@ export default function Skills() {
                     value: 'frameworks',
                 },
                 {
+                    label: 'Data Bases',
+                    value: 'dataBases',
+                },
+                {
+                    label: 'Tests',
+                    value: 'tests',
+                },
+                {
+                    label: 'Deploy',
+                    value: 'deploy',
+                },
+                {
                     label: 'Os',
                     value: 'os',
                 },

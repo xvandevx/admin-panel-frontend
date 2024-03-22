@@ -97,6 +97,7 @@ export default function InfoBlockTable({
         <Table
             columns={columns}
             dataSource={dataSource}
+            pagination={false}
         />
     )
 }
