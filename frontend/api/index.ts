@@ -13,6 +13,7 @@ import blogPosts from "~/api/blogPosts";
 import blogTags from "~/api/blogTags";
 import backup from "~/api/backup";
 import knowledges from "~/api/knowledges";
+import pets from "~/api/pets";
 
 let API_URL = '/api';
 
@@ -35,5 +36,6 @@ export const Api = {
     blogPosts: blogPosts(axios, config),
     blogTags: blogTags(axios, config),
     backup: backup(axios, config),
-    knowledges: knowledges(axios, config)
+    knowledges: knowledges(axios, config),
+    pets: pets(axios, config)
 }

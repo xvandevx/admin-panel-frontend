@@ -30,6 +30,8 @@ import { BackupModule } from './backup/backup.module';
 import { Knowledges } from './knowledges/knowledges.model';
 import { KnowledgesSkills } from './knowledges/knowledge-skills.model';
 import { KnowledgesModule } from './knowledges/knowledges.module';
+import { Pets } from './pets/pets.model';
+import { PetsModule } from './pets/pets.module';
 
 @Module({
   imports: [
@@ -60,6 +62,7 @@ import { KnowledgesModule } from './knowledges/knowledges.module';
         Tags,
         Knowledges,
         KnowledgesSkills,
+        Pets,
       ],
       autoLoadModels: true,
       logging: false,
@@ -76,6 +79,7 @@ import { KnowledgesModule } from './knowledges/knowledges.module';
     BlogModule,
     BackupModule,
     KnowledgesModule,
+    PetsModule,
   ],
   controllers: [],
   providers: [

@@ -24,6 +24,7 @@ const items = [
         getItem('Educatuon', 'educations'),
         getItem('Knowledges', 'knowledges'),
         getItem('Skills', 'skills'),
+        getItem('Pets', 'pets'),
     ]),
     getItem('Users', 'users', <UserOutlined rev={undefined} />, [
         getItem('Users', 'users'),
